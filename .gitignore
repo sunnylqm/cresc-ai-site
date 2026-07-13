@@ -1,6 +1,5 @@
 node_modules
-site/node_modules
-site/out
+out
 .DS_Store
 temp-packy-docs
 convert_docs.py

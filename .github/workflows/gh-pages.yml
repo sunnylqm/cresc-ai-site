@@ -18,14 +18,14 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/setup-node@v6
+      - uses: oven-sh/setup-bun@v2
         with:
-          node-version: 24
+          bun-version: latest
 
       - name: Build
         run: |
-          cd site && npm i && npm run build && cd -
-          mv site/out ./
+          bun install
+          bun run build
           cp .nojekyll out/
 
       - name: Deploy
