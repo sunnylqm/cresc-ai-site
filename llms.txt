@@ -4,7 +4,6 @@
 
 ## Others
 
-- [](/docs/Monitor.md)
 - [AionUI](/docs/advanced/AionUI.md)
 - [GPT接入CC](/docs/advanced/ChatGPTClaudeCode.md)
 - [Claude Desktop](/docs/advanced/ClaudeDesktop.md)
