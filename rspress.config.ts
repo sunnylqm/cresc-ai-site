@@ -23,8 +23,7 @@ export default defineConfig({
     nav: [
       { text: '首页', link: '/' },
       { text: '使用指南', link: '/docs/register/' },
-      { text: 'Cresc AI 官网', link: 'https://www.cresc.dev' },
-      { text: 'Cresc AI服务监控', link: 'https://check.linux.do/group/Cresc' }
+      { text: 'Cresc AI 官网', link: 'https://www.cresc.dev' }
     ],
     sidebar: {
       '/docs/': [
