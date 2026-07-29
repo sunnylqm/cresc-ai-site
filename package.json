@@ -10,19 +10,19 @@
     "start": "rspress preview"
   },
   "dependencies": {
-    "@ant-design/icons": "^6.1.1",
-    "@rsbuild/plugin-sass": "^1.5.1",
-    "@rspress/core": "^2.0.9",
-    "@tailwindcss/postcss": "^4.2.2",
+    "@ant-design/icons": "^6.3.2",
+    "@rsbuild/plugin-sass": "^2.0.1",
+    "@rspress/core": "^2.0.18",
+    "@tailwindcss/postcss": "^4.3.3",
     "@types/react-dom": "^19.2.3",
-    "antd": "^6.3.5",
-    "autoprefixer": "10.5.0",
-    "postcss": "^8.5.10",
-    "react": "^19.2.5",
-    "react-dom": "^19.2.5",
+    "antd": "^6.5.2",
+    "autoprefixer": "10.5.4",
+    "postcss": "^8.5.24",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
     "rspress-plugin-mermaid": "^1.0.1",
-    "sass": "^1.99.0",
-    "tailwindcss": "^4.2.2",
-    "typescript": "^6.0.2"
+    "sass": "^1.102.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^7.0.2"
   }
 }
