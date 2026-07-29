@@ -72,9 +72,6 @@ sudo dpkg -i cc-switch_x.x.x_amd64.deb
 
 ### 环境检查
 
-::: warning
-**请你最好进行此步的环境检查步骤！！！**
-如果你有经验，能确认你的Nodejs环境以及cc、codex、gemini的cli安装没问题，配置目录也都存在，可以忽略这一步，直接进入后续的CC Switch配置
-
-点击右侧传送门查看 [如何进行环境检查？](/docs/cli/1-env.md)
+::: warning 环境准备
+在配置 CC-Switch 之前，请确认您的 Node.js 环境以及 Claude Code、Codex、Gemini CLI 已正确安装。
 :::

@@ -12,7 +12,7 @@
 
 ![](/assets/image/CC-Switch/013.webp)
 
-4. 回顾 [创建API令牌](/docs/register/4-token.md)，在 Cresc AI 中创建 **Gemini** 分组的令牌，点击复制按钮，复制ApiKey到剪切板
+4. 在 Cresc AI 控制台中创建 **Gemini** 分组的 API 令牌，点击复制按钮，复制 ApiKey 到剪切板
 
 ![](/assets/image/Cli/026.webp)
 

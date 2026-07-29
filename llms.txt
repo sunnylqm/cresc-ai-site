@@ -2,48 +2,20 @@
 
 > Cresc AI 官方文档，提供最稳定、最便捷的 AI 模型中转服务。
 
+## 模型广场
+
+- [模型广场](/docs/token/1-intro.md)
+
+## CC-Switch使用
+
+- [通用步骤](/docs/ccswitch/1-common.md)
+
 ## Others
 
-- [AionUI](/docs/advanced/AionUI.md)
-- [GPT接入CC](/docs/advanced/ChatGPTClaudeCode.md)
-- [Claude Desktop](/docs/advanced/ClaudeDesktop.md)
-- [DS接入CC](/docs/advanced/DeepSeekClaudeCode.md)
-- [Hermes](/docs/advanced/Hermes.md)
-- [OpenClaw](/docs/advanced/OpenClaw.md)
-- [OpenCode](/docs/advanced/OpenCode.md)
-- [第三方接入](/docs/advanced/index.md)
-- [通用步骤](/docs/ccswitch/1-common.md)
 - [Claude Code配置](/docs/ccswitch/2-claude.md)
 - [Codex配置](/docs/ccswitch/3-codex.md)
 - [Gemini配置](/docs/ccswitch/4-gemini.md)
 - [CC Switch CLI 使用](/docs/ccswitch/5-ccs_cli.md): Claude Code、Codex、Gemini、OpenCode 与 OpenClaw 的命令行管理工具 统一管理多个 AI 编码 CLI 的供应商配置，并支持 MCP、Skills、提示词、本地代理和环境检查等功能。
 - [CC-Switch使用教程](/docs/ccswitch/index.md)
-- [环境检查(通用步骤)](/docs/cli/1-env.md)
-- [Claude Code配置](/docs/cli/2-claude.md)
-- [Codex配置](/docs/cli/3-codex.md)
-- [Gemini配置](/docs/cli/4-gemini.md)
-- [Claude Code 缓存优化代理](/docs/cli/5-cache-fix.md)
-- [Grok Build配置](/docs/cli/6-grok-build.md)
-- [CLI配置教程](/docs/cli/index.md)
-- [Claude Code相关问题](/docs/faq/CC.md)
-- [Codex相关问题](/docs/faq/Codex.md)
-- [Gemini相关问题](/docs/faq/Gemini.md)
-- [常见问题（FAQ）](/docs/faq/index.md)
-- [Nano Banana2 Pro绘图教程](/docs/paint/Banana.md)
-- [GPT-Image-2 绘图教程](/docs/paint/GPTImage.md)
-- [绘图模型教程](/docs/paint/index.md)
-- [注册账号](/docs/register/1-register.md)
-- [登录账号](/docs/register/2-login.md)
-- [购买额度](/docs/register/3-quota.md)
-- [创建 API 令牌](/docs/register/4-token.md)
-- [环境检查](/docs/register/5-env.md)
-- [配置 CLI 工具](/docs/register/6-cli.md)
-- [快速开始](/docs/register/index.md)
-- [令牌分组查看](/docs/token/1-intro.md)
 - [令牌分组介绍](/docs/token/2-group.md)
-- [分组介绍](/docs/token/index.md)
-- [服务条款](/docs/tos/TOS.md)
-- [使用政策（AUP）](/docs/tos/aup.md)
-- [条款与政策](/docs/tos/index.md)
-- [服务特定条款](/docs/tos/service-specific-terms.md)
-- [支持的国家和地区](/docs/tos/use.md)
+- [模型广场](/docs/token/index.md)
