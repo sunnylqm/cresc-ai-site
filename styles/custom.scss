@@ -421,8 +421,6 @@ html.dark .notice-text {
   text-shadow: none;
 }
 
-
-
 /* ===== GroupCard 样式 ===== */
 .group-card {
   border: 1px solid var(--vp-c-divider, #e5e7eb);
@@ -856,8 +854,6 @@ html.dark .notice-text {
   to { transform: rotate(360deg); }
 }
 
-
-
 .model-card {
   position: relative;
   overflow: hidden;
@@ -1085,8 +1081,6 @@ html.dark .notice-text {
   to { transform: rotate(360deg); }
 }
 
-
-
 [v-cloak] {
   display: none;
 }
@@ -1200,8 +1194,6 @@ html.dark .notice-text {
   color: #d14343;
   font-size: 13px;
 }
-
-
 
 .important-notice {
   position: relative;
@@ -2214,97 +2206,6 @@ html.dark .ms-loading, html.dark .ms-empty, html.dark .ms-error {
   padding: 12px 0 48px;
 }
 
-/* Hero Section */
-.p-pricing-hero {
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.06) 0%, rgba(147, 51, 234, 0.08) 100%);
-  border: 1px solid rgba(37, 99, 235, 0.15);
-  border-radius: 20px;
-  padding: 36px 40px;
-  margin-bottom: 24px;
-}
-html.dark .p-pricing-hero {
-  background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(45, 27, 78, 0.6) 100%);
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
-.p-pricing-hero__badge {
-  display: inline-block;
-  font-size: 12px;
-  font-weight: 700;
-  color: #2563eb;
-  background: rgba(37, 99, 235, 0.12);
-  padding: 4px 12px;
-  border-radius: 999px;
-  margin-bottom: 12px;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-}
-html.dark .p-pricing-hero__badge {
-  color: #60a5fa;
-  background: rgba(96, 165, 250, 0.2);
-}
-
-.p-pricing-hero__title {
-  font-size: 34px;
-  font-weight: 800;
-  margin: 0 0 12px 0;
-  color: #0f172a;
-  line-height: 1.2;
-}
-html.dark .p-pricing-hero__title {
-  color: #f8fafc;
-}
-
-.p-pricing-hero__subtitle {
-  font-size: 16px;
-  color: #475569;
-  margin: 0 0 28px 0;
-  max-width: 800px;
-  line-height: 1.6;
-}
-html.dark .p-pricing-hero__subtitle {
-  color: rgba(255, 255, 255, 0.75);
-}
-
-.p-pricing-stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 16px;
-}
-
-.p-stat-box {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 14px;
-  padding: 16px 20px;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
-}
-html.dark .p-stat-box {
-  background: rgba(15, 23, 42, 0.6);
-  border-color: rgba(255, 255, 255, 0.08);
-}
-
-.p-stat-val {
-  font-size: 24px;
-  font-weight: 800;
-  color: #2563eb;
-  margin-bottom: 4px;
-}
-html.dark .p-stat-val {
-  color: #60a5fa;
-}
-
-.p-stat-lbl {
-  font-size: 13px;
-  font-weight: 600;
-  color: #64748b;
-}
-html.dark .p-stat-lbl {
-  color: rgba(255, 255, 255, 0.6);
-}
-
 /* Filter Card */
 .p-filter-card {
   background: #ffffff;
@@ -2413,75 +2314,6 @@ html.dark .p-group-select {
   background: rgba(15, 23, 42, 0.8);
   border-color: rgba(255, 255, 255, 0.15);
   color: #ffffff;
-}
-
-/* Active Group Highlight Banner */
-.p-active-group-banner {
-  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-  border: 1px solid #bfdbfe;
-  border-radius: 14px;
-  padding: 16px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-html.dark .p-active-group-banner {
-  background: linear-gradient(135deg, rgba(30, 58, 138, 0.4) 0%, rgba(30, 64, 175, 0.3) 100%);
-  border-color: rgba(96, 165, 250, 0.3);
-}
-
-.p-active-group-info {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.p-group-badge {
-  font-size: 13px;
-  font-weight: 800;
-  color: #ffffff;
-  background: #2563eb;
-  padding: 3px 10px;
-  border-radius: 6px;
-}
-
-.p-group-tag {
-  font-size: 12px;
-  font-weight: 700;
-  color: #1d4ed8;
-  background: rgba(37, 99, 235, 0.1);
-  padding: 3px 10px;
-  border-radius: 999px;
-}
-html.dark .p-group-tag {
-  color: #93c5fd;
-  background: rgba(147, 197, 253, 0.15);
-}
-
-.p-group-ratio-highlight {
-  font-size: 14px;
-  color: #1e3a8a;
-}
-html.dark .p-group-ratio-highlight {
-  color: #bfdbfe;
-}
-.p-group-ratio-highlight strong {
-  font-size: 16px;
-  color: #2563eb;
-}
-html.dark .p-group-ratio-highlight strong {
-  color: #60a5fa;
-}
-
-.p-group-desc {
-  margin: 0;
-  font-size: 13.5px;
-  color: #334155;
-  line-height: 1.5;
-}
-html.dark .p-group-desc {
-  color: rgba(255, 255, 255, 0.8);
 }
 
 /* Provider Tabs */
@@ -2637,36 +2469,6 @@ html.dark .p-model-id {
   color: #60a5fa;
 }
 
-.p-scenario-cell {
-  font-size: 13.5px;
-  color: #475569;
-  max-width: 320px;
-}
-html.dark .p-scenario-cell {
-  color: rgba(255, 255, 255, 0.75);
-}
-
-.p-provider-tag {
-  display: inline-block;
-  padding: 3px 8px;
-  border-radius: 6px;
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-.p-provider-anthropic { background: #f3e8ff; color: #7e22ce; }
-.p-provider-openai { background: #dcfce7; color: #15803d; }
-.p-provider-google { background: #e0f2fe; color: #0369a1; }
-.p-provider-deepseek { background: #e0e7ff; color: #4338ca; }
-.p-provider-domestic { background: #ffedd5; color: #c2410c; }
-.p-provider-multimodal { background: #fce7f3; color: #be185d; }
-.p-provider-other { background: #f1f5f9; color: #475569; }
-
-html.dark .p-provider-anthropic { background: rgba(126, 34, 206, 0.25); color: #d8b4fe; }
-html.dark .p-provider-openai { background: rgba(21, 128, 61, 0.25); color: #86efac; }
-html.dark .p-provider-google { background: rgba(3, 105, 161, 0.25); color: #7dd3fc; }
-html.dark .p-provider-deepseek { background: rgba(67, 56, 202, 0.25); color: #a5b4fc; }
-
 .p-ctx-badge {
   font-size: 12px;
   font-weight: 700;
@@ -2678,82 +2480,6 @@ html.dark .p-provider-deepseek { background: rgba(67, 56, 202, 0.25); color: #a5
 html.dark .p-ctx-badge {
   background: rgba(255, 255, 255, 0.08);
   color: rgba(255, 255, 255, 0.7);
-}
-
-.p-group-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-}
-
-.p-chip {
-  font-size: 11px;
-  font-weight: 700;
-  padding: 2px 8px;
-  border-radius: 999px;
-  background: #f1f5f9;
-  color: #334155;
-  border: 1px solid #e2e8f0;
-  cursor: pointer;
-}
-html.dark .p-chip {
-  background: rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.75);
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
-.p-chip.active {
-  background: #2563eb;
-  color: #ffffff;
-  border-color: #2563eb;
-}
-
-.p-ratio-badge {
-  font-size: 13px;
-  font-weight: 800;
-  padding: 3px 8px;
-  border-radius: 6px;
-  background: #f1f5f9;
-  color: #334155;
-}
-
-.p-ratio-badge.discount {
-  background: #dcfce7;
-  color: #15803d;
-}
-html.dark .p-ratio-badge.discount {
-  background: rgba(21, 128, 61, 0.3);
-  color: #86efac;
-}
-
-.p-copy-btn {
-  padding: 6px 12px;
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: 700;
-  border: 1px solid #cbd5e1;
-  background: #ffffff;
-  color: #334155;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  white-space: nowrap;
-}
-html.dark .p-copy-btn {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.15);
-  color: #ffffff;
-}
-
-.p-copy-btn:hover {
-  background: #2563eb;
-  color: #ffffff;
-  border-color: #2563eb;
-}
-
-.p-copy-btn.copied {
-  background: #10b981;
-  color: #ffffff;
-  border-color: #10b981;
 }
 
 /* Grid Cards */
@@ -2805,60 +2531,6 @@ html.dark .p-card-title {
   color: #ffffff;
 }
 
-.p-card-desc {
-  font-size: 13.5px;
-  color: #475569;
-  margin: 0;
-  line-height: 1.5;
-}
-html.dark .p-card-desc {
-  color: rgba(255, 255, 255, 0.75);
-}
-
-.p-card-meta {
-  display: flex;
-  justify-content: space-between;
-  background: #f8fafc;
-  padding: 10px 14px;
-  border-radius: 10px;
-}
-html.dark .p-card-meta {
-  background: rgba(15, 23, 42, 0.5);
-}
-
-.p-meta-box {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.p-meta-title {
-  font-size: 11px;
-  font-weight: 700;
-  color: #94a3b8;
-}
-
-.p-meta-val {
-  font-size: 14px;
-  font-weight: 800;
-  color: #0f172a;
-}
-html.dark .p-meta-val {
-  color: #ffffff;
-}
-
-.p-card-groups {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.p-groups-title {
-  font-size: 11px;
-  font-weight: 700;
-  color: #94a3b8;
-}
-
 .p-loading-box, .p-empty-box, .p-error-box {
   text-align: center;
   padding: 60px 20px;
@@ -2891,92 +2563,6 @@ html.dark .p-loading-box, html.dark .p-empty-box, html.dark .p-error-box {
   font-weight: 700;
   cursor: pointer;
 }
-
-
-/* ==========================================================================
-   模型广场：分组总览卡片 + 原价/折扣价展示
-   ========================================================================== */
-.p-group-overview {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 14px;
-  margin-bottom: 24px;
-}
-
-.p-group-card {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 16px;
-  padding: 16px 18px;
-  cursor: pointer;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
-}
-.p-group-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
-}
-.p-group-card.active {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.18);
-}
-html.dark .p-group-card {
-  background: rgba(30, 41, 59, 0.7);
-  border-color: rgba(255, 255, 255, 0.08);
-}
-html.dark .p-group-card.active {
-  border-color: #60a5fa;
-  box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.25);
-}
-
-.p-group-card__name {
-  font-size: 15px;
-  font-weight: 700;
-  color: #0f172a;
-  margin-bottom: 6px;
-}
-html.dark .p-group-card__name { color: #f8fafc; }
-
-.p-group-card__rate {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 18px;
-  font-weight: 800;
-  color: #2563eb;
-  margin-bottom: 6px;
-}
-html.dark .p-group-card__rate { color: #60a5fa; }
-
-.p-group-card__off {
-  font-size: 11px;
-  font-weight: 700;
-  color: #15803d;
-  background: rgba(22, 163, 74, 0.12);
-  padding: 2px 8px;
-  border-radius: 999px;
-}
-html.dark .p-group-card__off { color: #4ade80; background: rgba(74, 222, 128, 0.15); }
-
-.p-group-card__up {
-  font-size: 11px;
-  font-weight: 700;
-  color: #b45309;
-  background: rgba(217, 119, 6, 0.12);
-  padding: 2px 8px;
-  border-radius: 999px;
-}
-html.dark .p-group-card__up { color: #fbbf24; background: rgba(251, 191, 36, 0.15); }
-
-.p-group-card__desc {
-  font-size: 12px;
-  line-height: 1.5;
-  color: #64748b;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-html.dark .p-group-card__desc { color: rgba(255, 255, 255, 0.6); }
 
 /* 价格单元格：原价划线 + 实际价 */
 .p-price-cell {
@@ -3044,41 +2630,122 @@ html.dark .p-price-label { color: rgba(255, 255, 255, 0.6); }
   gap: 8px;
 }
 
-.p-pricing-footnote {
-  margin-top: 20px;
-  font-size: 12px;
-  line-height: 1.7;
-  color: #64748b;
-}
-html.dark .p-pricing-footnote { color: rgba(255, 255, 255, 0.55); }
+/* ==========================================================================
+   模型广场：页面外框收敛（居中、去目录/去 Copy Markdown）与嵌入模式
+   ========================================================================== */
 
-/* 表头下的币种说明 */
-.p-th-unit {
-  display: block;
-  margin-top: 2px;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0;
-  text-transform: none;
-  color: #94a3b8;
-}
-html.dark .p-th-unit { color: rgba(255, 255, 255, 0.4); }
-
-.p-pricing-footnote code {
-  padding: 1px 5px;
-  border-radius: 4px;
-  background: rgba(148, 163, 184, 0.18);
-  font-size: 12px;
-}
-
-/* 模型广场关掉了右侧目录（frontmatter outline: false），
-   但 Rspress 仍会留一个等宽的空占位列。这里把它收掉，宽度让给模型列表。 */
+/* 关掉了右侧目录与侧边栏后，Rspress 仍会各留一个等宽的空占位列，
+   导致内容整体偏向一侧。这里把两个占位列都收掉，让模型列表真正水平居中。 */
 .rp-doc-layout__container:has(.p-pricing-container) {
-  .rp-doc-layout__outline-placeholder {
+  justify-content: center;
+
+  .rp-doc-layout__outline-placeholder,
+  .rp-doc-layout__sidebar-placeholder {
     display: none;
   }
 
+  .rp-doc-layout__doc-container,
   .rp-doc-layout__doc {
     max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
   }
+
+  /* 隐藏 Rspress 由 frontmatter title 自动生成的 H1，以及 llms 的 Copy Markdown 入口。
+     用 CSS 而不是删掉 frontmatter title：标题仍要给浏览器标签页和侧边栏用。 */
+  .rp-doc > h1,
+  .rp-llms-container {
+    display: none;
+  }
+}
+
+/* 被 iframe 引用（或 ?embed=1）时只保留模型列表本身 */
+html.p-embed {
+  .rp-nav,
+  .rp-doc-footer,
+  .rp-doc-layout__sidebar,
+  .rp-doc-layout__sidebar-placeholder,
+  .rp-doc-layout__outline,
+  .rp-doc-layout__outline-placeholder,
+  .rp-llms-container {
+    display: none !important;
+  }
+
+  .rp-doc-layout__container,
+  .rp-doc-layout__doc-container,
+  .rp-doc-layout__doc {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
+
+  .p-pricing-container {
+    padding-top: 0;
+  }
+}
+
+/* 顶部说明：替代原先占地过大的统计卡片区 */
+.p-pricing-intro {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #64748b;
+}
+html.dark .p-pricing-intro { color: rgba(255, 255, 255, 0.6); }
+
+.p-pricing-intro strong {
+  color: #0f172a;
+  font-weight: 700;
+}
+html.dark .p-pricing-intro strong { color: #f1f5f9; }
+
+.p-pricing-intro__time {
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.75;
+}
+
+/* 厂商 logo */
+.p-vendor-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  flex: none;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.p-vendor-logo--fallback {
+  border-radius: 4px;
+  background: rgba(148, 163, 184, 0.25);
+  font-size: 10px;
+  font-weight: 700;
+  color: #475569;
+}
+html.dark .p-vendor-logo--fallback { color: rgba(255, 255, 255, 0.7); }
+
+.p-vendor-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+  white-space: nowrap;
+}
+html.dark .p-vendor-cell { color: rgba(255, 255, 255, 0.78); }
+
+/* 厂商筛选按钮里的 logo 与文字对齐 */
+.p-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }

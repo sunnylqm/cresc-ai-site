@@ -29,10 +29,10 @@ export default defineConfig({
   root: path.join(__dirname, 'pages'),
   title: 'Cresc AI 使用文档',
   description: 'Cresc AI 官方文档，提供最稳定、最便捷的 AI 模型中转服务。',
-  icon: '/logo.webp',
+  icon: '/logo.svg',
   logo: {
-    light: '/logo.webp',
-    dark: '/logo.webp',
+    light: '/logo.svg',
+    dark: '/logo.svg',
   },
   logoText: 'Cresc AI',
   themeConfig: {
