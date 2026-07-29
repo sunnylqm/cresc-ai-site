@@ -22,7 +22,34 @@ jobs:
         with:
           bun-version: latest
 
+      # 产物里的资源路径是构建时写死的，部署到子路径必须带上前缀，否则全部 404。
+      # 优先级：仓库变量 DOC_BASE > 自定义域名 / 用户站点（根路径）> 项目页（/<repo>/）
+      - name: Resolve base path
+        id: base
+        env:
+          DOC_BASE_VAR: ${{ vars.DOC_BASE }}
+        run: |
+          owner=$(echo "${GITHUB_REPOSITORY%%/*}" | tr '[:upper:]' '[:lower:]')
+          repo="${GITHUB_REPOSITORY#*/}"
+          if [ -n "$DOC_BASE_VAR" ]; then
+            base="$DOC_BASE_VAR"
+            reason="repository variable DOC_BASE"
+          elif [ -f pages/public/CNAME ]; then
+            base="/"
+            reason="custom domain (pages/public/CNAME)"
+          elif [ "$(echo "$repo" | tr '[:upper:]' '[:lower:]')" = "$owner.github.io" ]; then
+            base="/"
+            reason="user/org pages site"
+          else
+            base="/$repo/"
+            reason="project pages site"
+          fi
+          echo "base=$base" >> "$GITHUB_OUTPUT"
+          echo "base = $base ($reason)"
+
       - name: Build
+        env:
+          DOC_BASE: ${{ steps.base.outputs.base }}
         run: |
           bun install
           bun run build

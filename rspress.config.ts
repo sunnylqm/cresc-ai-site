@@ -3,7 +3,27 @@ import { defineConfig } from '@rspress/core';
 import { pluginSass } from '@rsbuild/plugin-sass';
 import rspressPluginMermaid from 'rspress-plugin-mermaid';
 
+/**
+ * 站点部署到的路径前缀。产物里的 JS/CSS 引用与路由链接都会带上它，
+ * 所以部署到子路径（如 GitHub Pages 的 https://user.github.io/repo/）时必须设置，
+ * 否则所有资源都会 404。
+ *
+ * 部署在域名根目录时留空即可；子路径部署时构建前设 DOC_BASE=/repo/。
+ * CI 里由 .github/workflows/deploy.yml 自动推导，见该文件的 "Resolve base path" 步骤。
+ *
+ * 注意：不能用 rsbuild 的 output.assetPrefix: 'auto' 代替 —— SSG 阶段要在 Node 里执行
+ * bundle，Rspack 的自动 publicPath 在非浏览器环境下会直接构建失败。
+ */
+const BASE = normalizeBase(process.env.DOC_BASE);
+
+function normalizeBase(raw?: string): string {
+  const value = (raw || '').trim();
+  if (!value || value === '/') return '/';
+  return `/${value.replace(/^\/+|\/+$/g, '')}/`;
+}
+
 export default defineConfig({
+  base: BASE,
   llms: true,
   outDir: 'out',
   root: path.join(__dirname, 'pages'),

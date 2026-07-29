@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { withBase } from '@rspress/core/runtime';
 
 export default function HomeGroupCards() {
   const [activeCard, setActiveCard] = useState('');
@@ -54,7 +55,7 @@ export default function HomeGroupCards() {
             <div className="logo-wrapper">
               <img
                 className="qq-logo"
-                src="/assets/image/logo/qq.webp"
+                src={withBase('/assets/image/logo/qq.webp')}
                 alt="售后QQ群六"
               />
               <div className="logo-glow"></div>
