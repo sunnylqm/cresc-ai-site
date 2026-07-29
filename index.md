@@ -1,6 +1,6 @@
 # 主页
 
-![售后QQ群六](/assets/image/logo/qq.webp)
+![售后QQ群六](/cresc-ai-site/assets/image/logo/qq.webp)
 
 售后QQ群六
 

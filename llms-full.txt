@@ -1,5 +1,5 @@
 ---
-url: /docs/token/1-intro.md
+url: /cresc-ai-site/docs/token/1-intro.md
 ---
 
 # 模型广场
@@ -66,7 +66,7 @@ API Model Directory & Pricing
 
 
 ---
-url: /docs/ccswitch/1-common.md
+url: /cresc-ai-site/docs/ccswitch/1-common.md
 ---
 
 # 通用步骤
@@ -150,7 +150,7 @@ sudo dpkg -i cc-switch_x.x.x_amd64.deb
 
 
 ---
-url: /docs/ccswitch/2-claude.md
+url: /cresc-ai-site/docs/ccswitch/2-claude.md
 ---
 
 # Claude Code配置
@@ -188,7 +188,7 @@ url: /docs/ccswitch/2-claude.md
 ![](/assets/image/Cli/016.webp)
 
 ::: warning 使用提醒
-如果你使用的是 [CC分组](/docs/token/2-group.md#cc分组)，请注意该分组**不支持第三方接入**，因此无法在 CC Switch 中完成完整的调用测试。
+如果你使用的是 [CC分组](/cresc-ai-site/docs/token/2-group.md#cc分组)，请注意该分组**不支持第三方接入**，因此无法在 CC Switch 中完成完整的调用测试。
 
 这类配置是否生效，请直接以 Claude Code 内的实际对话结果为准，并在 Claude Code 中完成最终测试。
 :::
@@ -196,7 +196,7 @@ url: /docs/ccswitch/2-claude.md
 
 
 ---
-url: /docs/ccswitch/3-codex.md
+url: /cresc-ai-site/docs/ccswitch/3-codex.md
 ---
 
 # Codex配置
@@ -232,7 +232,7 @@ url: /docs/ccswitch/3-codex.md
 
 
 ---
-url: /docs/ccswitch/4-gemini.md
+url: /cresc-ai-site/docs/ccswitch/4-gemini.md
 ---
 
 # Gemini配置
@@ -268,7 +268,7 @@ url: /docs/ccswitch/4-gemini.md
 
 
 ---
-url: /docs/ccswitch/5-ccs_cli.md
+url: /cresc-ai-site/docs/ccswitch/5-ccs_cli.md
 ---
 
 # CC Switch CLI 使用
@@ -540,7 +540,7 @@ cc-switch env check --app gemini
 
 
 ---
-url: /docs/ccswitch/index.md
+url: /cresc-ai-site/docs/ccswitch/index.md
 ---
 
 # CC-Switch使用教程
@@ -721,12 +721,12 @@ sudo dpkg -i cc-switch_x.x.x_amd64.deb
 
 CC-Switch CLI 同时提供完整 CLI 命令和完整 TUI 界面，适合服务器、SSH、macOS 终端和自动化场景使用。你也可以让 Claude Code / Codex 直接调用 `cc-switch` 命令来检查、切换和修复配置。
 
-查看详细教程：[CC Switch CLI 使用](/docs/ccswitch/5-ccs_cli.md)
+查看详细教程：[CC Switch CLI 使用](/cresc-ai-site/docs/ccswitch/5-ccs_cli.md)
 
 
 
 ---
-url: /docs/token/2-group.md
+url: /cresc-ai-site/docs/token/2-group.md
 ---
 
 # 令牌分组介绍
@@ -1184,7 +1184,7 @@ Claude Code
 
 
 ---
-url: /docs/token/index.md
+url: /cresc-ai-site/docs/token/index.md
 ---
 
 # 模型广场
@@ -1746,12 +1746,12 @@ API Model Directory & Pricing
 
 
 ---
-url: /index.md
+url: /cresc-ai-site/index.md
 ---
 
 # 主页
 
-![售后QQ群六](/assets/image/logo/qq.webp)
+![售后QQ群六](/cresc-ai-site/assets/image/logo/qq.webp)
 
 售后QQ群六
 

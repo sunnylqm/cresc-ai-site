@@ -176,4 +176,4 @@ sudo dpkg -i cc-switch_x.x.x_amd64.deb
 
 CC-Switch CLI 同时提供完整 CLI 命令和完整 TUI 界面，适合服务器、SSH、macOS 终端和自动化场景使用。你也可以让 Claude Code / Codex 直接调用 `cc-switch` 命令来检查、切换和修复配置。
 
-查看详细教程：[CC Switch CLI 使用](/docs/ccswitch/5-ccs_cli.md)
+查看详细教程：[CC Switch CLI 使用](/cresc-ai-site/docs/ccswitch/5-ccs_cli.md)

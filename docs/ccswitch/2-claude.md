@@ -33,7 +33,7 @@
 ![](/assets/image/Cli/016.webp)
 
 ::: warning 使用提醒
-如果你使用的是 [CC分组](/docs/token/2-group.md#cc分组)，请注意该分组**不支持第三方接入**，因此无法在 CC Switch 中完成完整的调用测试。
+如果你使用的是 [CC分组](/cresc-ai-site/docs/token/2-group.md#cc分组)，请注意该分组**不支持第三方接入**，因此无法在 CC Switch 中完成完整的调用测试。
 
 这类配置是否生效，请直接以 Claude Code 内的实际对话结果为准，并在 Claude Code 中完成最终测试。
 :::
