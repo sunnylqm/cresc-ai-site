@@ -136,10 +136,6 @@ function formatCNY(v: number | null | undefined): string {
   return `¥${formatAmount(v)}`;
 }
 
-function formatRate(rate: number): string {
-  return `${Number(rate.toFixed(4))}x`;
-}
-
 /** 单元格：原价用美元划线，实际结算价用人民币强调。 */
 function PriceCell({ list, actual, rate }: { list: number | null; actual: number | null; rate: number }) {
   if (actual === null && list === null) return <span className="p-price-na">-</span>;
@@ -173,7 +169,7 @@ export default function ModelSquare() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedGroup, setSelectedGroup] = useState<number | 'all'>('all');
   const [selectedProvider, setSelectedProvider] = useState<ProviderId | 'all'>('all');
-  const [viewMode, setViewMode] = useState<'table' | 'grid'>('table');
+  const [viewMode, setViewMode] = useState<'table' | 'grid'>('grid');
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
   useEffect(() => {
@@ -206,7 +202,7 @@ export default function ModelSquare() {
     }
   };
 
-  /** 模型名 -> 出现过它的所有分组（用于「全部分组」视图的分组标签）。 */
+  /** 模型名 -> 出现过它的所有分组，用于按分组名搜索与去重统计。 */
   const groupsByModel = useMemo(() => {
     const map = new Map<string, { id: number; name: string; rate: number }[]>();
     for (const g of groups) {
@@ -262,8 +258,6 @@ export default function ModelSquare() {
 
   const exchange = data?.exchange;
   const totalModels = groupsByModel.size;
-  const bestRate = groups.length ? Math.min(...groups.map((g) => g.rate_multiplier)) : null;
-  const activeGroup = selectedGroup === 'all' ? null : groups.find((g) => g.id === selectedGroup) || null;
   const updatedAt = data?.generated_at
     ? new Date(data.generated_at).toLocaleString('zh-CN', { hour12: false })
     : '-';
@@ -289,48 +283,11 @@ export default function ModelSquare() {
             <span className="p-stat-lbl">令牌分组</span>
           </div>
           <div className="p-stat-box">
-            <span className="p-stat-val">{bestRate !== null ? formatRate(bestRate) : '-'}</span>
-            <span className="p-stat-lbl">最低计费倍率</span>
-          </div>
-          <div className="p-stat-box">
             <span className="p-stat-val" style={{ fontSize: 15, lineHeight: 1.5 }}>{updatedAt}</span>
             <span className="p-stat-lbl">数据更新时间</span>
           </div>
         </div>
       </div>
-
-      {/* 分组总览：直接展示分组配置与折扣 */}
-      {groups.length > 0 && (
-        <div className="p-group-overview">
-          <div
-            className={`p-group-card ${selectedGroup === 'all' ? 'active' : ''}`}
-            onClick={() => setSelectedGroup('all')}
-          >
-            <div className="p-group-card__name">🌐 全部分组</div>
-            <div className="p-group-card__rate">{totalModels} 个模型</div>
-            <div className="p-group-card__desc">同名模型按最低倍率展示</div>
-          </div>
-          {groups.map((g) => (
-            <div
-              key={g.id}
-              className={`p-group-card ${selectedGroup === g.id ? 'active' : ''} ${g.rate_multiplier < 1 ? 'discount' : ''}`}
-              onClick={() => setSelectedGroup(g.id)}
-            >
-              <div className="p-group-card__name">{g.name}</div>
-              <div className="p-group-card__rate">
-                <strong>{formatRate(g.rate_multiplier)}</strong>
-                {g.discount_percent !== null && (
-                  <span className="p-group-card__off">省 {Math.round(g.discount_percent)}%</span>
-                )}
-                {g.rate_multiplier > 1 && <span className="p-group-card__up">加价</span>}
-              </div>
-              <div className="p-group-card__desc">
-                {g.description ? g.description.split('\n')[0] : `${g.platform} · ${g.model_count} 个模型`}
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
 
       <div className="p-filter-card">
         <div className="p-filter-top">
@@ -357,32 +314,11 @@ export default function ModelSquare() {
             >
               <option value="all">🌐 全部分组 (All Groups)</option>
               {groups.map((g) => (
-                <option key={g.id} value={g.id}>
-                  {g.name}（倍率 {formatRate(g.rate_multiplier)}）
-                </option>
+                <option key={g.id} value={g.id}>{g.name}</option>
               ))}
             </select>
           </div>
         </div>
-
-        {activeGroup && (
-          <div className="p-active-group-banner">
-            <div className="p-active-group-info">
-              <span className="p-group-badge">{activeGroup.name}</span>
-              <span className="p-group-tag">{activeGroup.platform}</span>
-              <span className="p-group-ratio-highlight">
-                当前分组计费倍率：<strong>{formatRate(activeGroup.rate_multiplier)}</strong>
-                {activeGroup.discount_percent !== null && `（相当于 ${Math.round(activeGroup.discount_percent)}% 折扣）`}
-              </span>
-            </div>
-            {activeGroup.description && <p className="p-group-desc">{activeGroup.description}</p>}
-            {activeGroup.peak.enabled && (
-              <p className="p-group-desc">
-                ⏰ 高峰时段 {activeGroup.peak.start}–{activeGroup.peak.end} 按 {formatRate(activeGroup.peak.rate_multiplier)} 计费。
-              </p>
-            )}
-          </div>
-        )}
 
         <div className="p-provider-tabs">
           {PROVIDER_TABS.map((tab) => (
@@ -451,8 +387,6 @@ export default function ModelSquare() {
                 <th>模型 ID</th>
                 <th>厂商</th>
                 <th>上下文</th>
-                <th>分组</th>
-                <th>倍率</th>
                 <th>输入 / 1M<span className="p-th-unit">原价 $ ／ 实付 ¥</span></th>
                 <th>输出 / 1M<span className="p-th-unit">原价 $ ／ 实付 ¥</span></th>
                 <th>缓存读 / 1M<span className="p-th-unit">原价 $ ／ 实付 ¥</span></th>
@@ -472,25 +406,6 @@ export default function ModelSquare() {
                       <span className={`p-provider-tag p-provider-${m.provider.toLowerCase()}`}>{m.provider}</span>
                     </td>
                     <td><span className="p-ctx-badge">{m.context}</span></td>
-                    <td>
-                      <div className="p-group-chips">
-                        {m.allGroups.map((g) => (
-                          <span
-                            key={g.id}
-                            className={`p-chip ${selectedGroup === g.id ? 'active' : ''}`}
-                            onClick={() => setSelectedGroup(g.id)}
-                            title={`点击筛选 ${g.name} 分组（倍率 ${formatRate(g.rate)}）`}
-                          >
-                            {g.name}
-                          </span>
-                        ))}
-                      </div>
-                    </td>
-                    <td>
-                      <span className={`p-ratio-badge ${m.rate_multiplier < 1 ? 'discount' : ''}`}>
-                        {formatRate(m.rate_multiplier)}
-                      </span>
-                    </td>
                     <td><PriceCell list={m.list_price?.input ?? null} actual={m.actual_price_cny?.input ?? null} rate={m.rate_multiplier} /></td>
                     <td><PriceCell list={m.list_price?.output ?? null} actual={m.actual_price_cny?.output ?? null} rate={m.rate_multiplier} /></td>
                     <td><PriceCell list={m.list_price?.cache_read ?? null} actual={m.actual_price_cny?.cache_read ?? null} rate={m.rate_multiplier} /></td>
@@ -548,27 +463,6 @@ export default function ModelSquare() {
                     <span className="p-meta-title">上下文</span>
                     <span className="p-meta-val">{m.context}</span>
                   </div>
-                  <div className="p-meta-box">
-                    <span className="p-meta-title">计费倍率</span>
-                    <span className={`p-meta-val ${isDiscount ? 'discount-text' : ''}`}>
-                      {formatRate(m.rate_multiplier)}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="p-card-groups">
-                  <span className="p-groups-title">可用分组：</span>
-                  <div className="p-group-chips">
-                    {m.allGroups.map((g) => (
-                      <span
-                        key={g.id}
-                        className={`p-chip ${selectedGroup === g.id ? 'active' : ''}`}
-                        onClick={() => setSelectedGroup(g.id)}
-                      >
-                        {g.name}
-                      </span>
-                    ))}
-                  </div>
                 </div>
               </div>
             );
@@ -576,15 +470,6 @@ export default function ModelSquare() {
         </div>
       )}
 
-      {!loading && !error && (
-        <p className="p-pricing-footnote">
-          价格均为每百万 token：<code>$</code> 为模型原价（官方参考价），<code>¥</code> 为本站实际扣费金额
-          {exchange && `（按 1 美元额度 = ¥${formatAmount(exchange.cny_per_usd)} 折算，充值 1 元到账 ${formatAmount(exchange.balance_recharge_multiplier)} 美元额度）`}。
-          缓存写入价与图片、视频等固定计费项请以控制台账单为准。
-          数据由 <a href={PRICING_API} target="_blank" rel="noreferrer">公开定价接口</a> 提供，每 5 分钟同步一次。
-          官方参考价缺失的模型（多为已下线的旧版本）原价显示为 “-”。
-        </p>
-      )}
     </div>
   );
 }

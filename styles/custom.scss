@@ -3070,3 +3070,15 @@ html.dark .p-th-unit { color: rgba(255, 255, 255, 0.4); }
   background: rgba(148, 163, 184, 0.18);
   font-size: 12px;
 }
+
+/* 模型广场关掉了右侧目录（frontmatter outline: false），
+   但 Rspress 仍会留一个等宽的空占位列。这里把它收掉，宽度让给模型列表。 */
+.rp-doc-layout__container:has(.p-pricing-container) {
+  .rp-doc-layout__outline-placeholder {
+    display: none;
+  }
+
+  .rp-doc-layout__doc {
+    max-width: 100%;
+  }
+}
