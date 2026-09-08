@@ -13,4 +13,4 @@
 - [模型广场](/cresc-ai-site/docs/token/1-intro.md)
 - [令牌分组介绍](/cresc-ai-site/docs/token/2-group.md)
 - [模型广场](/cresc-ai-site/docs/token/index.md)
-- [加好友送$36 token](/cresc-ai-site/roadshow.md): 加好友送$36 token，GPT Claude kimi DeepSeek glm等模型随意使用
+- [加好友送$36 token](/cresc-ai-site/roadshow.md): 加好友送$36 token，全网主流前沿大模型随意尽情畅用
