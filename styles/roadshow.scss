@@ -1,0 +1,849 @@
+/**
+ * 路演大屏专用样式：高对比度、全屏沉浸感、微动效引导，
+ * 专为展会/交流会现场笔记本与平板电脑展示设计。
+ */
+
+.roadshow-container {
+  --bg-dark: #06070a;
+  --cyber-green: #38ef7d;
+  --cyber-lime: #a6ff00;
+  --cyber-pink: #ff007a;
+  --card-bg: rgba(18, 22, 30, 0.94);
+
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--bg-dark);
+  color: #ffffff;
+  overflow-x: hidden;
+  user-select: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+
+  &.is-fullscreen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+  }
+}
+
+/* ---------------- 悬浮控制栏 ---------------- */
+
+.roadshow-controls {
+  position: fixed;
+  top: 16px;
+  right: 20px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s ease;
+
+  &.is-dimmed {
+    opacity: 0.22;
+    transform: translateY(-2px);
+  }
+
+  &.is-active,
+  &:hover {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.roadshow-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(22, 26, 35, 0.88);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  padding: 8px 16px;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+
+  &:hover {
+    background: rgba(34, 40, 54, 0.98);
+    border-color: rgba(56, 239, 125, 0.6);
+    color: #ffffff;
+    box-shadow: 0 0 16px rgba(56, 239, 125, 0.35);
+  }
+
+  &--primary {
+    background: linear-gradient(135deg, rgba(56, 239, 125, 0.28), rgba(166, 255, 0, 0.2));
+    border-color: rgba(56, 239, 125, 0.55);
+    color: #38ef7d;
+
+    &:hover {
+      background: linear-gradient(135deg, rgba(56, 239, 125, 0.45), rgba(166, 255, 0, 0.35));
+      border-color: #38ef7d;
+      color: #ffffff;
+    }
+  }
+
+  &--home {
+    padding: 8px 14px;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .btn-icon {
+    font-size: 14px;
+    line-height: 1;
+  }
+}
+
+/* ---------------- 科技网格与氛围光晕 ---------------- */
+
+.cyber-ambient {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.ambient-blob {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+
+  &--green {
+    width: 650px;
+    height: 650px;
+    top: -150px;
+    left: -150px;
+    background: radial-gradient(circle, rgba(56, 239, 125, 0.14) 0%, transparent 68%);
+    filter: blur(80px);
+    animation: blobFloat 9s ease-in-out infinite alternate;
+  }
+
+  &--pink {
+    width: 600px;
+    height: 600px;
+    bottom: -100px;
+    right: -100px;
+    background: radial-gradient(circle, rgba(255, 0, 122, 0.15) 0%, transparent 70%);
+    filter: blur(90px);
+    animation: blobFloat 9s ease-in-out infinite alternate-reverse;
+  }
+}
+
+.cyber-grid {
+  position: absolute;
+  inset: 0;
+  background-size: 48px 48px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  opacity: 0.6;
+}
+
+/* ---------------- 主展示台结构 ---------------- */
+
+.roadshow-stage {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: clamp(32px, 5vh, 56px) clamp(20px, 4vw, 64px);
+  box-sizing: border-box;
+}
+
+.roadshow-content {
+  width: 100%;
+  max-width: 1240px;
+  display: grid;
+  grid-template-columns: 1.16fr 0.84fr;
+  gap: clamp(28px, 4vw, 64px);
+  align-items: center;
+  margin: auto 0;
+}
+
+/* ---------------- 左侧文案与模型 ---------------- */
+
+.roadshow-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 2;
+}
+
+.live-perk-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(56, 239, 125, 0.12);
+  border: 1px solid rgba(56, 239, 125, 0.38);
+  border-radius: 999px;
+  padding: 6px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cyber-green);
+  letter-spacing: 0.4px;
+  margin-bottom: clamp(14px, 2vh, 22px);
+  box-shadow: 0 0 16px rgba(56, 239, 125, 0.18);
+}
+
+.perk-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--cyber-green);
+  box-shadow: 0 0 10px var(--cyber-green);
+  animation: dotPulse 1.6s ease-in-out infinite;
+}
+
+/* 核心书法刷色标题 */
+.title-banner-group {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 1.8vh, 18px);
+  align-items: flex-start;
+  margin-bottom: clamp(16px, 2.4vh, 24px);
+}
+
+.brush-tag {
+  display: inline-block;
+  font-style: italic;
+  font-weight: 900;
+  line-height: 1.12;
+  letter-spacing: 2px;
+  border-radius: 8px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+  position: relative;
+  overflow: hidden;
+
+  &--green {
+    background: linear-gradient(135deg, #a6ff00, #22c55e);
+    color: #000000;
+    transform: rotate(-2deg);
+    padding: clamp(8px, 1.4vh, 14px) clamp(20px, 2.5vw, 36px);
+    font-size: clamp(36px, 5.2vw, 70px);
+    box-shadow: 0 8px 26px rgba(56, 239, 125, 0.4);
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.4);
+  }
+
+  &--pink {
+    background: linear-gradient(135deg, #ff007a, #ff1493);
+    color: #ffffff;
+    transform: rotate(1.4deg);
+    padding: clamp(10px, 1.6vh, 16px) clamp(22px, 3vw, 40px);
+    font-size: clamp(40px, 6vw, 82px);
+    text-shadow: 
+      2.5px 2.5px 0 #000,
+      -2.5px -2.5px 0 #000,
+      2.5px -2.5px 0 #000,
+      -2.5px 2.5px 0 #000,
+      0 4px 20px rgba(0, 0, 0, 0.8);
+    animation: neonPinkGlow 3.5s ease-in-out infinite alternate;
+  }
+}
+
+/* 微光扫过特效 */
+.shimmer-sweep {
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.5),
+    transparent
+  );
+  transform: skewX(-25deg);
+  animation: sweepAnim 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* 模型副标题 */
+.model-subline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: clamp(14px, 1.6vw, 19px);
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  margin-bottom: clamp(16px, 2.5vh, 26px);
+}
+
+.subline-dash {
+  height: 1px;
+  width: 36px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* 4大模型胶囊条 */
+.models-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: clamp(18px, 2.8vh, 28px);
+}
+
+.model-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  padding: 8px 16px;
+  border-radius: 999px;
+  transition: all 0.25s ease;
+
+  &:hover {
+    border-color: rgba(56, 239, 125, 0.6);
+    background: rgba(56, 239, 125, 0.12);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(56, 239, 125, 0.2);
+  }
+
+  .model-icon {
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .model-name {
+    font-weight: 700;
+    font-size: 14px;
+    color: #ffffff;
+    text-transform: capitalize;
+  }
+
+  .model-desc {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+}
+
+/* Let's Chat! 标签 */
+.lets-chat-tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 900;
+  font-style: italic;
+  color: var(--cyber-lime);
+  background: rgba(166, 255, 0, 0.14);
+  border: 1px solid rgba(166, 255, 0, 0.45);
+  border-radius: 999px;
+  padding: 6px 14px;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 8px rgba(166, 255, 0, 0.5);
+  transform: rotate(-3deg);
+  margin-right: 4px;
+}
+
+/* 标语重点展示卡片（高对比度，无机器人） */
+.callout-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(18, 22, 30, 0.9);
+  border: 1.5px solid rgba(166, 255, 0, 0.45);
+  border-radius: 16px;
+  padding: clamp(12px, 1.8vh, 18px) clamp(16px, 2.2vw, 24px);
+  margin-bottom: clamp(18px, 2.6vh, 28px);
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(166, 255, 0, 0.12);
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: var(--cyber-lime);
+    box-shadow: 
+      0 10px 30px rgba(0, 0, 0, 0.7),
+      0 0 28px rgba(166, 255, 0, 0.25);
+  }
+}
+
+.callout-spark {
+  font-size: clamp(24px, 2.8vw, 32px);
+  color: var(--cyber-lime);
+  filter: drop-shadow(0 0 10px rgba(166, 255, 0, 0.7));
+  animation: sparkFlicker 2.5s ease-in-out infinite alternate;
+  flex-shrink: 0;
+}
+
+.callout-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.callout-title {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.callout-chalk {
+  font-size: clamp(17px, 2vw, 23px);
+  font-weight: 800;
+  color: var(--cyber-lime);
+  letter-spacing: 0.5px;
+}
+
+.callout-chalk-sub {
+  font-size: clamp(17px, 2vw, 23px);
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.callout-desc {
+  margin: 0;
+  font-size: clamp(12px, 1.3vw, 14px);
+  color: rgba(255, 255, 255, 0.72);
+}
+
+/* 底部品牌栏 */
+.brand-strip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-domain {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--cyber-green);
+  font-weight: 800;
+  font-size: clamp(20px, 2.2vw, 26px);
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 12px rgba(56, 239, 125, 0.4);
+
+  .globe-icon {
+    font-size: 22px;
+  }
+}
+
+.brand-sep {
+  color: rgba(255, 255, 255, 0.25);
+  font-size: 16px;
+}
+
+.brand-slogan {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: clamp(14px, 1.5vw, 17px);
+  letter-spacing: 1px;
+}
+
+/* ---------------- 右侧核心二维码区域 ---------------- */
+
+.roadshow-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.qr-hero-card {
+  position: relative;
+  background: linear-gradient(180deg, rgba(22, 27, 36, 0.94), rgba(12, 14, 20, 0.98));
+  border: 1.5px solid rgba(255, 255, 255, 0.16);
+  border-radius: 28px;
+  padding: clamp(22px, 3vh, 34px);
+  box-shadow: 
+    0 24px 64px rgba(0, 0, 0, 0.8),
+    0 0 44px rgba(56, 239, 125, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 440px;
+  width: 100%;
+  box-sizing: border-box;
+  animation: cardBreathe 4s ease-in-out infinite alternate;
+}
+
+/* 取景框四角高科技边框 */
+.qr-corner {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-color: var(--cyber-green);
+  border-style: solid;
+  pointer-events: none;
+  animation: cornerPulse 3s ease-in-out infinite;
+
+  &--tl {
+    top: 12px;
+    left: 12px;
+    border-width: 3px 0 0 3px;
+    border-top-left-radius: 8px;
+  }
+
+  &--tr {
+    top: 12px;
+    right: 12px;
+    border-width: 3px 3px 0 0;
+    border-top-right-radius: 8px;
+  }
+
+  &--bl {
+    bottom: 12px;
+    left: 12px;
+    border-width: 0 0 3px 3px;
+    border-bottom-left-radius: 8px;
+  }
+
+  &--br {
+    bottom: 12px;
+    right: 12px;
+    border-width: 0 3px 3px 0;
+    border-bottom-right-radius: 8px;
+  }
+}
+
+/* 高对比度二维码卡片窗口 */
+.qr-viewport {
+  position: relative;
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 12px;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.45);
+  width: clamp(220px, 24vw, 300px);
+  height: clamp(220px, 24vw, 300px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.qr-code-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: 12px;
+}
+
+/* 激光扫描微特效（柔和，只在二维码上微弱扫视） */
+.qr-scan-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(56, 239, 125, 0.85) 30%,
+    rgba(166, 255, 0, 0.95) 50%,
+    rgba(56, 239, 125, 0.85) 70%,
+    transparent 100%
+  );
+  box-shadow: 0 0 12px rgba(56, 239, 125, 0.7);
+  animation: scanBarSweep 3.8s ease-in-out infinite;
+}
+
+/* 扫码文字提示 */
+.qr-caption {
+  margin-top: clamp(16px, 2.2vh, 22px);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.qr-caption-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.qr-wechat-tag {
+  background: #07c160;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.3px;
+}
+
+.qr-action-text {
+  font-size: clamp(17px, 1.8vw, 21px);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+}
+
+.qr-caption-sub {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: clamp(12px, 1.3vw, 14px);
+}
+
+.qr-footer-badges {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.pill-check {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 11px;
+  color: var(--cyber-green);
+  font-weight: 600;
+}
+
+/* 底部状态微提示 */
+.roadshow-bottom-tip {
+  margin-top: auto;
+  padding-top: 20px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.5px;
+}
+
+/* ---------------- 原版海报模式 ---------------- */
+
+.poster-stage {
+  position: relative;
+  z-index: 1;
+  width: 100vw;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.poster-ambient-glow {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56, 239, 125, 0.2) 0%, transparent 70%);
+  filter: blur(100px);
+  pointer-events: none;
+}
+
+.poster-wrapper {
+  position: relative;
+  max-height: calc(100vh - 80px);
+  max-height: calc(100dvh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.poster-img {
+  max-height: calc(100vh - 90px);
+  max-height: calc(100dvh - 90px);
+  max-width: 92vw;
+  object-fit: contain;
+  border-radius: 18px;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.9),
+    0 0 40px rgba(56, 239, 125, 0.25);
+}
+
+.poster-tip {
+  margin-top: 14px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* ---------------- 动画特效关键帧 ---------------- */
+
+@keyframes dotPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0.6;
+  }
+}
+
+@keyframes neonPinkGlow {
+  0% {
+    box-shadow: 0 8px 24px rgba(255, 0, 122, 0.35);
+  }
+  100% {
+    box-shadow: 0 12px 38px rgba(255, 0, 122, 0.65), 0 0 20px rgba(255, 0, 122, 0.4);
+  }
+}
+
+@keyframes sweepAnim {
+  0%, 65% {
+    left: -120%;
+  }
+  100% {
+    left: 220%;
+  }
+}
+
+@keyframes sparkFlicker {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.15) rotate(6deg);
+    opacity: 1;
+    filter: drop-shadow(0 0 14px rgba(166, 255, 0, 0.9));
+  }
+}
+
+@keyframes cardBreathe {
+  0% {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(56, 239, 125, 0.15);
+  }
+  100% {
+    box-shadow: 0 24px 68px rgba(0, 0, 0, 0.85), 0 0 50px rgba(56, 239, 125, 0.3);
+  }
+}
+
+@keyframes cornerPulse {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes scanBarSweep {
+  0% {
+    top: 5%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.9;
+  }
+  85% {
+    opacity: 0.9;
+  }
+  100% {
+    top: 95%;
+    opacity: 0;
+  }
+}
+
+@keyframes blobFloat {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(30px, 20px) scale(1.08);
+  }
+}
+
+/* ---------------- 响应式断点适配 ---------------- */
+
+/* 平板竖屏或小屏幕（Portrait / Mobile / iPad 垂直立放） */
+@media (max-width: 900px), (max-aspect-ratio: 1/1) {
+  .roadshow-controls {
+    top: 12px;
+    right: 14px;
+  }
+
+  .roadshow-stage {
+    /* 增加顶部边距，彻底避免与右上角悬浮控制按钮重叠 */
+    padding-top: clamp(68px, 9vh, 84px);
+    padding-bottom: clamp(20px, 3vh, 32px);
+    padding-left: clamp(16px, 3vw, 24px);
+    padding-right: clamp(16px, 3vw, 24px);
+    justify-content: flex-start;
+  }
+
+  .roadshow-content {
+    grid-template-columns: 1fr;
+    gap: clamp(20px, 3vh, 32px);
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .roadshow-left {
+    align-items: center;
+  }
+
+  .title-banner-group {
+    align-items: center;
+  }
+
+  .models-strip {
+    justify-content: center;
+  }
+
+  .callout-card {
+    justify-content: center;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .brand-strip {
+    justify-content: center;
+  }
+
+  .qr-hero-card {
+    margin: 0 auto;
+    max-width: 360px;
+    padding: 20px;
+  }
+
+  .qr-viewport {
+    width: clamp(200px, 50vw, 260px);
+    height: clamp(200px, 50vw, 260px);
+  }
+}
+
+@media (max-width: 520px) {
+  .roadshow-controls {
+    top: 10px;
+    right: 10px;
+    gap: 6px;
+  }
+
+  .roadshow-btn {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+
+  .brush-tag--green {
+    font-size: 32px;
+    padding: 6px 16px;
+  }
+
+  .brush-tag--pink {
+    font-size: 34px;
+    padding: 8px 18px;
+  }
+}
