@@ -1733,7 +1733,7 @@ url: /cresc-ai-site/roadshow.md
 
 加好友，
 
-送 $30 Token
+送 $36 Token
 
 全网主流前沿大模型 · 自由调用 · 任意使用
 
@@ -1755,9 +1755,9 @@ url: /cresc-ai-site/roadshow.md
 
 /让 AI 更近一步
 
-![微信扫码添加好友，领取 $30 Token](/cresc-ai-site/assets/image/qr-36k.png)
+![微信扫码添加好友，领取 $36 Token](/cresc-ai-site/assets/image/qr-36k.png)
 
-微信扫码直接领取 $30 体验金
+微信扫码直接领取 $36 体验金
 
 随时聊 · 随便问 · 协助快速配置
 
