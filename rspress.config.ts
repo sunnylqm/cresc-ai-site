@@ -27,14 +27,10 @@ export default defineConfig({
   llms: true,
   outDir: 'out',
   root: path.join(__dirname, 'pages'),
-  title: 'Cresc AI 使用文档',
-  description: 'Cresc AI 官方文档，提供最稳定、最便捷的 AI 模型中转服务。',
-  icon: '/logo.svg',
-  logo: {
-    light: '/logo.svg',
-    dark: '/logo.svg',
-  },
-  logoText: 'Cresc AI',
+  title: '36k.ai',
+  description: '提供 GPT、Claude、Kimi、DeepSeek、GLM 等模型的 Token 大幅折扣与技术支持服务。',
+  icon: '/36k.svg',
+  logoText: '36k.ai',
   themeConfig: {
     darkMode: true,
     socialLinks: [
@@ -44,6 +40,7 @@ export default defineConfig({
       { text: '首页', link: '/' },
       { text: '模型广场', link: '/docs/token/1-intro' },
       { text: 'CC-Switch使用', link: '/docs/ccswitch/1-common' },
+      { text: '模型报价', link: 'https://ai.reactnative.cn/model-plaza' },
       { text: 'Cresc AI 官网', link: 'https://www.cresc.dev' }
     ],
     sidebar: {
