@@ -186,10 +186,10 @@
 
 .roadshow-content {
   width: 100%;
-  max-width: 1180px;
+  max-width: 1260px;
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: clamp(36px, 5vw, 80px);
+  grid-template-columns: 1.28fr 0.72fr;
+  gap: clamp(36px, 4.5vw, 72px);
   align-items: center;
   margin: auto;
 }
@@ -214,7 +214,7 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: clamp(8px, 1.6vh, 18px);
+  gap: clamp(10px, 1.8vh, 20px);
   align-items: flex-start;
 }
 
@@ -222,12 +222,12 @@
   display: block;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   font-weight: 950;
-  line-height: 1.05;
+  line-height: 1.08;
   letter-spacing: -0.025em;
   white-space: nowrap;
 
   &--action {
-    font-size: clamp(62px, 8.8vw, 118px);
+    font-size: clamp(52px, 6.6vw, 92px);
     color: #ffffff;
     text-shadow: 
       0 4px 24px rgba(0, 0, 0, 0.95),
@@ -235,11 +235,11 @@
   }
 
   &--reward {
-    font-size: clamp(68px, 9.8vw, 134px);
+    font-size: clamp(34px, 4.2vw, 60px);
     background: linear-gradient(135deg, #ffffff 0%, #fff275 22%, #ffb703 52%, #fb8500 82%, #ff5400 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 40px rgba(255, 183, 3, 0.52)) drop-shadow(0 6px 20px rgba(0, 0, 0, 0.95));
+    filter: drop-shadow(0 0 36px rgba(255, 183, 3, 0.48)) drop-shadow(0 6px 20px rgba(0, 0, 0, 0.95));
     animation: goldShimmer 3.8s ease-in-out infinite alternate;
 
     .gold-accent {
@@ -254,20 +254,20 @@
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1.5px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1.5px solid rgba(255, 183, 3, 0.38);
   backdrop-filter: blur(16px);
   border-radius: 999px;
-  padding: clamp(10px, 1.4vh, 15px) clamp(20px, 2.4vw, 32px);
-  margin-top: clamp(24px, 3.8vh, 44px);
+  padding: clamp(12px, 1.6vh, 18px) clamp(24px, 2.6vw, 36px);
+  margin-top: clamp(28px, 4vh, 44px);
   box-shadow: 
     0 12px 32px rgba(0, 0, 0, 0.65),
-    0 0 24px rgba(255, 183, 3, 0.12);
+    0 0 26px rgba(255, 183, 3, 0.16);
   transition: all 0.3s ease;
 
   .pill-dot {
-    width: 9px;
-    height: 9px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background: #ffb703;
     box-shadow: 0 0 12px #ffb703, 0 0 24px #fb8500;
@@ -275,11 +275,11 @@
   }
 
   .pill-text {
-    font-size: clamp(15px, 1.8vw, 23px);
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.92);
-    letter-spacing: 0.6px;
-    line-height: 1.4;
+    font-size: clamp(18px, 2.2vw, 28px);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.8px;
+    line-height: 1.35;
   }
 }
 
@@ -469,11 +469,12 @@
     white-space: normal;
 
     &--action {
-      font-size: clamp(52px, 12vw, 84px);
+      font-size: clamp(40px, 9vw, 68px);
     }
 
     &--reward {
-      font-size: clamp(56px, 13vw, 92px);
+      font-size: clamp(26px, 5.8vw, 42px);
+      line-height: 1.2;
     }
   }
 
@@ -496,20 +497,21 @@
 @media (max-width: 520px) {
   .hero-word {
     &--action {
-      font-size: clamp(40px, 13vw, 54px);
+      font-size: clamp(32px, 9.8vw, 44px);
     }
 
     &--reward {
-      font-size: clamp(44px, 14vw, 58px);
+      font-size: clamp(20px, 6.2vw, 28px);
+      line-height: 1.25;
     }
   }
 
   .hero-note-pill {
-    padding: 8px 16px;
+    padding: 10px 20px;
     border-radius: 999px;
 
     .pill-text {
-      font-size: 13px;
+      font-size: 16px;
     }
   }
 

@@ -124,22 +124,15 @@ export default function RoadshowPage() {
             <section className="roadshow-left">
               <div className="hero-typography">
                 <h1 className="hero-title-group">
-                  <span className="hero-word hero-word--action">加好友</span>
+                  <span className="hero-word hero-word--action">微信加好友</span>
                   <span className="hero-word hero-word--reward">
-                    送 <span className="gold-accent">$36</span> Token
+                    不废话直接送 <span className="gold-accent">$36</span> Token
                   </span>
                 </h1>
 
                 <div className="hero-note-pill">
                   <span className="pill-dot" aria-hidden="true" />
-                  <span className="pill-text">全网主流前沿大模型 · 随意畅用</span>
-                </div>
-
-                <div className="hero-badges-row">
-                  <span className="hero-badge">代码编程</span>
-                  <span className="hero-badge">深度推理</span>
-                  <span className="hero-badge">智能对话</span>
-                  <span className="hero-badge">极速稳定</span>
+                  <span className="pill-text">手把手教你用起来</span>
                 </div>
               </div>
             </section>
