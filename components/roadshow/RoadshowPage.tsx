@@ -155,7 +155,7 @@ export default function RoadshowPage() {
           <div className="poster-wrapper">
             <img
               src={withBase('/assets/image/36kai.png')}
-              alt="加好友，送 $30 Token - 36k.ai 路演海报"
+              alt="加好友，送 $36 Token - 36k.ai 路演海报"
               className="poster-img"
             />
           </div>
@@ -172,7 +172,7 @@ export default function RoadshowPage() {
           </div>
 
           <div className="roadshow-content">
-            {/* 左侧区域：大标题促销信息、核心能力、机器人互动 */}
+            {/* 左侧区域：大标题促销信息、核心能力 */}
             <section className="roadshow-left">
               {/* 现场专属特惠指示胶囊 */}
               <div className="live-perk-badge">
@@ -180,13 +180,13 @@ export default function RoadshowPage() {
                 <span className="perk-label">现场路演专属福利 · 扫码立即开通</span>
               </div>
 
-              {/* 核心吸睛标语：加好友，送 $30 Token */}
+              {/* 核心吸睛标语：加好友，送 $36 Token */}
               <div className="title-banner-group">
                 <div className="brush-tag brush-tag--green">
                   <span className="brush-text">加好友，</span>
                 </div>
                 <div className="brush-tag brush-tag--pink">
-                  <span className="brush-text">送 $30 Token</span>
+                  <span className="brush-text">送 $36 Token</span>
                   <div className="shimmer-sweep" aria-hidden="true" />
                 </div>
               </div>
@@ -247,7 +247,7 @@ export default function RoadshowPage() {
                 <div className="qr-viewport">
                   <img
                     src={withBase('/assets/image/qr-36k.png')}
-                    alt="微信扫码添加好友，领取 $30 Token"
+                    alt="微信扫码添加好友，领取 $36 Token"
                     className="qr-code-image"
                   />
                   {/* 极简激光扫光效果（引导视线扫码，柔和不刺眼） */}
@@ -258,7 +258,7 @@ export default function RoadshowPage() {
                 <div className="qr-caption">
                   <div className="qr-caption-main">
                     <span className="qr-wechat-tag">微信扫码</span>
-                    <span className="qr-action-text">直接领取 $30 体验金</span>
+                    <span className="qr-action-text">直接领取 $36 体验金</span>
                   </div>
                   <div className="qr-caption-sub">
                     <span>随时聊 · 随便问 · 协助快速配置</span>
