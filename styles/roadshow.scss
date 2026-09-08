@@ -45,27 +45,59 @@
   z-index: 50;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   text-decoration: none;
-  opacity: 0.75;
-  transition: opacity 0.2s ease;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 
   &:hover {
-    opacity: 1;
+    transform: translateY(-2px);
   }
 
   &__mark {
-    width: 24px;
-    height: 24px;
-    border-radius: 6px;
+    width: clamp(28px, 2.2vw, 36px);
+    height: clamp(28px, 2.2vw, 36px);
+    border-radius: 8px;
     display: block;
+    // 字标是深色方块，配一圈细描边才在纯黑底上立得住
+    box-shadow: inset 0 0 0 1px rgba(244, 244, 242, 0.22);
   }
 
   &__name {
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
+    font-size: clamp(20px, 1.7vw, 28px);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 1;
     color: var(--ink);
+  }
+
+  /* 字标里的点：安静待着，每隔几秒轻轻蹦两下 —— 只用位移，不抢标语的注意力 */
+  &__dot {
+    display: inline-block;
+    animation: brandDotHop 5s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+  }
+
+  &:hover &__dot {
+    animation-duration: 1.6s;
+  }
+}
+
+@keyframes brandDotHop {
+  0%,
+  58%,
+  100% {
+    transform: translateY(0);
+  }
+  65% {
+    transform: translateY(-0.42em);
+  }
+  72% {
+    transform: translateY(0);
+  }
+  79% {
+    transform: translateY(-0.2em);
+  }
+  86% {
+    transform: translateY(0);
   }
 }
 
@@ -221,7 +253,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(14px, 2vh, 20px);
+  gap: 6px;
+  text-align: center;
+}
+
+.rs-qr__frame + .rs-qr__title {
+  margin-top: clamp(14px, 2vh, 20px);
 }
 
 .rs-qr__frame {
@@ -238,11 +275,20 @@
   image-rendering: -webkit-optimize-contrast;
 }
 
-.rs-qr__caption {
+/* 二维码下的两句话与首页浮层保持一致 */
+.rs-qr__title {
   margin: 0;
-  font-size: clamp(14px, 1.15vw, 17px);
-  font-weight: 500;
-  letter-spacing: 0.02em;
+  font-family: "Songti SC", "Noto Serif SC", "Source Han Serif SC", STSong, serif;
+  font-size: clamp(19px, 1.5vw, 24px);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+}
+
+.rs-qr__sub {
+  margin: 0;
+  font-size: clamp(13px, 1vw, 15px);
+  line-height: 1.5;
   color: var(--ink-2);
 }
 
@@ -255,11 +301,31 @@
   bottom: clamp(20px, 3.2vh, 34px);
   padding: 0 24px;
   box-sizing: border-box;
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6px 12px;
   font-size: clamp(12px, 1vw, 14px);
   letter-spacing: 0.03em;
-  color: var(--ink-3);
   pointer-events: none;
+
+  &__brand {
+    font-size: clamp(14px, 1.15vw, 17px);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  &__sep {
+    width: 1px;
+    height: 12px;
+    background: var(--line);
+  }
+
+  &__slogan {
+    color: var(--ink-3);
+  }
 }
 
 /* ---------------- 原版海报模式 ---------------- */
@@ -294,8 +360,15 @@
   /* 单列时内容会变高，页脚改为跟随文档流，避免与二维码说明重叠 */
   .roadshow-footer {
     position: static;
+    flex-direction: column;
+    gap: 6px;
     margin-top: clamp(28px, 4vh, 48px);
     padding: 0;
+    text-align: center;
+
+    &__sep {
+      display: none;
+    }
   }
 
   .roadshow-content {
@@ -331,5 +404,15 @@
 
   .rs-qr__img {
     width: min(66vw, 260px);
+  }
+}
+
+/* ---------------- 无障碍：系统开启「减少动态效果」时停掉所有动画 ---------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .roadshow-container,
+  .roadshow-container * {
+    animation: none !important;
+    transition: none !important;
   }
 }

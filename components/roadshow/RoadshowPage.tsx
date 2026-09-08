@@ -61,10 +61,12 @@ export default function RoadshowPage() {
       className={`roadshow-container ${isFullscreen ? 'is-fullscreen' : ''} view-${viewMode}`}
       onDoubleClick={toggleFullscreen}
     >
-      {/* 左上角品牌标识 */}
-      <a href={withBase('/')} className="roadshow-brand">
+      {/* 左上角品牌标识：字标里的点会时不时轻轻跳一下 */}
+      <a href={withBase('/')} className="roadshow-brand" aria-label="36k.ai 首页">
         <img src={withBase('/36k.svg')} alt="" className="roadshow-brand__mark" />
-        <span className="roadshow-brand__name">36k.ai</span>
+        <span className="roadshow-brand__name" aria-hidden="true">
+          36k<span className="roadshow-brand__dot">.</span>ai
+        </span>
       </a>
 
       {/* 顶部控制栏（平时完全隐藏，只有 hover 到右上角区域时才显现） */}
@@ -139,13 +141,18 @@ export default function RoadshowPage() {
                   className="rs-qr__img"
                 />
               </div>
-              <p className="rs-qr__caption">微信扫一扫 · 立即添加好友</p>
+              <p className="rs-qr__title">随时聊，随便问。</p>
+              <p className="rs-qr__sub">智能时代的困惑，不必独自想明白。</p>
             </section>
           </div>
 
           {/* 底部宣传语 */}
           <footer className="roadshow-footer">
-            全网主流前沿大模型 · 让每个人都能用上好用又实惠的 AI
+            <span className="roadshow-footer__brand">36k.ai</span>
+            <span className="roadshow-footer__sep" aria-hidden="true" />
+            <span className="roadshow-footer__slogan">
+              全网主流前沿大模型 · 让每个人都能用上好用又实惠的 AI
+            </span>
           </footer>
         </main>
       )}
