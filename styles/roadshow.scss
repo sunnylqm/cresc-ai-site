@@ -186,15 +186,15 @@
 
 .roadshow-content {
   width: 100%;
-  max-width: 1240px;
+  max-width: 1180px;
   display: grid;
-  grid-template-columns: 1.16fr 0.84fr;
-  gap: clamp(28px, 4vw, 64px);
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(36px, 5vw, 80px);
   align-items: center;
-  margin: auto 0;
+  margin: auto;
 }
 
-/* ---------------- 左侧文案与模型 ---------------- */
+/* ---------------- 左侧核心标语与标注 ---------------- */
 
 .roadshow-left {
   display: flex;
@@ -203,48 +203,23 @@
   z-index: 2;
 }
 
-.live-perk-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(56, 239, 125, 0.12);
-  border: 1px solid rgba(56, 239, 125, 0.38);
-  border-radius: 999px;
-  padding: 6px 16px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--cyber-green);
-  letter-spacing: 0.4px;
-  margin-bottom: clamp(14px, 2vh, 22px);
-  box-shadow: 0 0 16px rgba(56, 239, 125, 0.18);
-}
-
-.perk-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--cyber-green);
-  box-shadow: 0 0 10px var(--cyber-green);
-  animation: dotPulse 1.6s ease-in-out infinite;
-}
-
-/* 核心书法刷色标题 */
+/* 核心书法刷色标题：加好友送$36 token */
 .title-banner-group {
   display: flex;
   flex-direction: column;
-  gap: clamp(10px, 1.8vh, 18px);
+  gap: clamp(14px, 2.2vh, 24px);
   align-items: flex-start;
-  margin-bottom: clamp(16px, 2.4vh, 24px);
+  margin-bottom: clamp(20px, 3vh, 32px);
 }
 
 .brush-tag {
   display: inline-block;
   font-style: italic;
   font-weight: 900;
-  line-height: 1.12;
+  line-height: 1.15;
   letter-spacing: 2px;
-  border-radius: 8px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+  border-radius: 12px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
   position: relative;
   overflow: hidden;
 
@@ -252,9 +227,9 @@
     background: linear-gradient(135deg, #a6ff00, #22c55e);
     color: #000000;
     transform: rotate(-2deg);
-    padding: clamp(8px, 1.4vh, 14px) clamp(20px, 2.5vw, 36px);
-    font-size: clamp(36px, 5.2vw, 70px);
-    box-shadow: 0 8px 26px rgba(56, 239, 125, 0.4);
+    padding: clamp(10px, 1.8vh, 18px) clamp(24px, 3.2vw, 44px);
+    font-size: clamp(44px, 6.5vw, 86px);
+    box-shadow: 0 8px 30px rgba(56, 239, 125, 0.45);
     text-shadow: 0 1px 1px rgba(255, 255, 255, 0.4);
   }
 
@@ -262,8 +237,8 @@
     background: linear-gradient(135deg, #ff007a, #ff1493);
     color: #ffffff;
     transform: rotate(1.4deg);
-    padding: clamp(10px, 1.6vh, 16px) clamp(22px, 3vw, 40px);
-    font-size: clamp(40px, 6vw, 82px);
+    padding: clamp(12px, 2vh, 22px) clamp(26px, 3.6vw, 48px);
+    font-size: clamp(48px, 7.5vw, 98px);
     text-shadow: 
       2.5px 2.5px 0 #000,
       -2.5px -2.5px 0 #000,
@@ -291,188 +266,24 @@
   animation: sweepAnim 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
-/* 模型副标题 */
-.model-subline {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: rgba(255, 255, 255, 0.78);
-  font-size: clamp(14px, 1.6vw, 19px);
-  font-weight: 500;
-  letter-spacing: 0.6px;
-  margin-bottom: clamp(16px, 2.5vh, 26px);
-}
-
-.subline-dash {
-  height: 1px;
-  width: 36px;
-  background: rgba(255, 255, 255, 0.25);
-}
-
-/* 4大模型胶囊条 */
-.models-strip {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: clamp(18px, 2.8vh, 28px);
-}
-
-.model-pill {
+/* 小字标注：GPT Claude kimi DeepSeek glm等模型随意使用 */
+.model-note {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
   background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(8px);
-  padding: 8px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(12px);
   border-radius: 999px;
-  transition: all 0.25s ease;
+  padding: clamp(8px, 1.4vh, 14px) clamp(18px, 2.4vw, 28px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
 
-  &:hover {
-    border-color: rgba(56, 239, 125, 0.6);
-    background: rgba(56, 239, 125, 0.12);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 14px rgba(56, 239, 125, 0.2);
+  .note-text {
+    font-size: clamp(14px, 1.8vw, 22px);
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 0.8px;
+    line-height: 1.4;
   }
-
-  .model-icon {
-    width: 18px;
-    height: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    svg {
-      width: 100%;
-      height: 100%;
-    }
-  }
-
-  .model-name {
-    font-weight: 700;
-    font-size: 14px;
-    color: #ffffff;
-    text-transform: capitalize;
-  }
-
-  .model-desc {
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.5);
-  }
-}
-
-/* Let's Chat! 标签 */
-.lets-chat-tag {
-  display: inline-flex;
-  align-items: center;
-  font-size: 15px;
-  font-weight: 900;
-  font-style: italic;
-  color: var(--cyber-lime);
-  background: rgba(166, 255, 0, 0.14);
-  border: 1px solid rgba(166, 255, 0, 0.45);
-  border-radius: 999px;
-  padding: 6px 14px;
-  letter-spacing: 0.5px;
-  text-shadow: 0 0 8px rgba(166, 255, 0, 0.5);
-  transform: rotate(-3deg);
-  margin-right: 4px;
-}
-
-/* 标语重点展示卡片（高对比度，无机器人） */
-.callout-card {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  background: rgba(18, 22, 30, 0.9);
-  border: 1.5px solid rgba(166, 255, 0, 0.45);
-  border-radius: 16px;
-  padding: clamp(12px, 1.8vh, 18px) clamp(16px, 2.2vw, 24px);
-  margin-bottom: clamp(18px, 2.6vh, 28px);
-  box-shadow: 
-    0 8px 24px rgba(0, 0, 0, 0.6),
-    0 0 20px rgba(166, 255, 0, 0.12);
-  transition: all 0.3s ease;
-
-  &:hover {
-    border-color: var(--cyber-lime);
-    box-shadow: 
-      0 10px 30px rgba(0, 0, 0, 0.7),
-      0 0 28px rgba(166, 255, 0, 0.25);
-  }
-}
-
-.callout-spark {
-  font-size: clamp(24px, 2.8vw, 32px);
-  color: var(--cyber-lime);
-  filter: drop-shadow(0 0 10px rgba(166, 255, 0, 0.7));
-  animation: sparkFlicker 2.5s ease-in-out infinite alternate;
-  flex-shrink: 0;
-}
-
-.callout-content {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.callout-title {
-  display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 4px;
-}
-
-.callout-chalk {
-  font-size: clamp(17px, 2vw, 23px);
-  font-weight: 800;
-  color: var(--cyber-lime);
-  letter-spacing: 0.5px;
-}
-
-.callout-chalk-sub {
-  font-size: clamp(17px, 2vw, 23px);
-  font-weight: 800;
-  color: #ffffff;
-}
-
-.callout-desc {
-  margin: 0;
-  font-size: clamp(12px, 1.3vw, 14px);
-  color: rgba(255, 255, 255, 0.72);
-}
-
-/* 底部品牌栏 */
-.brand-strip {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.brand-domain {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--cyber-green);
-  font-weight: 800;
-  font-size: clamp(20px, 2.2vw, 26px);
-  letter-spacing: 0.5px;
-  text-shadow: 0 0 12px rgba(56, 239, 125, 0.4);
-
-  .globe-icon {
-    font-size: 22px;
-  }
-}
-
-.brand-sep {
-  color: rgba(255, 255, 255, 0.25);
-  font-size: 16px;
-}
-
-.brand-slogan {
-  color: rgba(255, 255, 255, 0.65);
-  font-size: clamp(14px, 1.5vw, 17px);
-  letter-spacing: 1px;
 }
 
 /* ---------------- 右侧核心二维码区域 ---------------- */
@@ -489,16 +300,15 @@
   background: linear-gradient(180deg, rgba(22, 27, 36, 0.94), rgba(12, 14, 20, 0.98));
   border: 1.5px solid rgba(255, 255, 255, 0.16);
   border-radius: 28px;
-  padding: clamp(22px, 3vh, 34px);
+  padding: clamp(20px, 2.8vh, 32px);
   box-shadow: 
     0 24px 64px rgba(0, 0, 0, 0.8),
     0 0 36px rgba(56, 239, 125, 0.18);
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  max-width: 440px;
-  width: 100%;
+  justify-content: center;
+  width: fit-content;
   box-sizing: border-box;
 }
 
@@ -546,10 +356,10 @@
   position: relative;
   background: #ffffff;
   border-radius: 22px;
-  padding: 12px;
+  padding: 14px;
   box-shadow: 0 10px 32px rgba(0, 0, 0, 0.45);
-  width: clamp(220px, 24vw, 300px);
-  height: clamp(220px, 24vw, 300px);
+  width: clamp(240px, 26vw, 340px);
+  height: clamp(240px, 26vw, 340px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -562,68 +372,6 @@
   object-fit: contain;
   display: block;
   border-radius: 12px;
-}
-
-/* 扫码文字提示 */
-.qr-caption {
-  margin-top: clamp(16px, 2.2vh, 22px);
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.qr-caption-main {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-.qr-wechat-tag {
-  background: #07c160;
-  color: #ffffff;
-  font-size: 12px;
-  font-weight: 700;
-  padding: 3px 8px;
-  border-radius: 6px;
-  letter-spacing: 0.3px;
-}
-
-.qr-action-text {
-  font-size: clamp(17px, 1.8vw, 21px);
-  font-weight: 800;
-  color: #ffffff;
-  letter-spacing: 0.5px;
-}
-
-.qr-caption-sub {
-  color: rgba(255, 255, 255, 0.65);
-  font-size: clamp(12px, 1.3vw, 14px);
-}
-
-.qr-footer-badges {
-  display: flex;
-  gap: 10px;
-  margin-top: 14px;
-}
-
-.pill-check {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 999px;
-  padding: 4px 10px;
-  font-size: 11px;
-  color: var(--cyber-green);
-  font-weight: 600;
-}
-
-/* 底部状态微提示 */
-.roadshow-bottom-tip {
-  margin-top: auto;
-  padding-top: 20px;
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.35);
-  letter-spacing: 0.5px;
 }
 
 /* ---------------- 原版海报模式 ---------------- */
@@ -672,24 +420,7 @@
     0 0 40px rgba(56, 239, 125, 0.25);
 }
 
-.poster-tip {
-  margin-top: 14px;
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.4);
-}
-
 /* ---------------- 动画特效关键帧 ---------------- */
-
-@keyframes dotPulse {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.35);
-    opacity: 0.6;
-  }
-}
 
 @keyframes neonPinkGlow {
   0% {
@@ -709,24 +440,10 @@
   }
 }
 
-@keyframes sparkFlicker {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.9;
-  }
-  50% {
-    transform: scale(1.15) rotate(6deg);
-    opacity: 1;
-    filter: drop-shadow(0 0 14px rgba(166, 255, 0, 0.9));
-  }
-}
-
-
-
 /* ---------------- 响应式断点适配 ---------------- */
 
 /* 平板竖屏或小屏幕（Portrait / Mobile / iPad 垂直立放） */
-@media (max-width: 900px), (max-aspect-ratio: 1/1) {
+@media (max-width: 960px), (max-aspect-ratio: 1/1) {
   .roadshow-controls {
     top: 0;
     right: 0;
@@ -734,18 +451,17 @@
   }
 
   .roadshow-stage {
-    /* 增加顶部边距，彻底避免与右上角悬浮控制按钮重叠 */
-    padding-top: clamp(68px, 9vh, 84px);
-    padding-bottom: clamp(20px, 3vh, 32px);
-    padding-left: clamp(16px, 3vw, 24px);
-    padding-right: clamp(16px, 3vw, 24px);
-    justify-content: flex-start;
+    padding-top: clamp(60px, 8vh, 80px);
+    padding-bottom: clamp(24px, 4vh, 40px);
+    padding-left: clamp(16px, 4vw, 32px);
+    padding-right: clamp(16px, 4vw, 32px);
+    justify-content: center;
   }
 
   .roadshow-content {
     grid-template-columns: 1fr;
-    gap: clamp(20px, 3vh, 32px);
-    margin: 0 auto;
+    gap: clamp(24px, 4vh, 48px);
+    margin: auto;
     text-align: center;
   }
 
@@ -757,37 +473,26 @@
     align-items: center;
   }
 
-  .models-strip {
-    justify-content: center;
-  }
-
-  .callout-card {
-    justify-content: center;
-    max-width: 480px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .brand-strip {
+  .model-note {
+    text-align: center;
     justify-content: center;
   }
 
   .qr-hero-card {
     margin: 0 auto;
-    max-width: 360px;
-    padding: 20px;
+    padding: clamp(16px, 2.5vh, 26px);
   }
 
   .qr-viewport {
-    width: clamp(200px, 50vw, 260px);
-    height: clamp(200px, 50vw, 260px);
+    width: clamp(220px, 52vw, 300px);
+    height: clamp(220px, 52vw, 300px);
   }
 }
 
 @media (max-width: 520px) {
   .roadshow-controls {
-    top: 10px;
-    right: 10px;
+    top: 0;
+    right: 0;
     gap: 6px;
   }
 
@@ -797,12 +502,27 @@
   }
 
   .brush-tag--green {
-    font-size: 32px;
-    padding: 6px 16px;
+    font-size: clamp(32px, 8.5vw, 44px);
+    padding: 8px 18px;
   }
 
   .brush-tag--pink {
-    font-size: 34px;
-    padding: 8px 18px;
+    font-size: clamp(36px, 9.5vw, 48px);
+    padding: 10px 20px;
+  }
+
+  .model-note {
+    padding: 6px 14px;
+    border-radius: 12px;
+
+    .note-text {
+      font-size: 13px;
+    }
+  }
+
+  .qr-viewport {
+    width: clamp(200px, 68vw, 260px);
+    height: clamp(200px, 68vw, 260px);
+    padding: 10px;
   }
 }
