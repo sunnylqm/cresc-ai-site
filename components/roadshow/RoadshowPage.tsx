@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { withBase } from '@rspress/core/runtime';
 import LottieBackground from './LottieBackground';
 const CAPABILITIES = [
@@ -49,8 +49,7 @@ const CAPABILITIES = [
 export default function RoadshowPage() {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [viewMode, setViewMode] = useState<'interactive' | 'poster'>('interactive');
-  const [controlsVisible, setControlsVisible] = useState(true);
-  const hideTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [isHovered, setIsHovered] = useState(false);
 
   // 全屏切换逻辑
   const toggleFullscreen = useCallback(async () => {
@@ -82,29 +81,23 @@ export default function RoadshowPage() {
       }
     };
 
-    const resetControlsTimer = () => {
-      setControlsVisible(true);
-      if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
-      hideTimerRef.current = setTimeout(() => {
-        setControlsVisible(false);
-      }, 3500);
-    };
-
     document.addEventListener('fullscreenchange', handleFullscreenChange);
     window.addEventListener('keydown', handleKeyDown);
-    window.addEventListener('mousemove', resetControlsTimer);
-    window.addEventListener('touchstart', resetControlsTimer);
-
-    resetControlsTimer();
 
     return () => {
       document.removeEventListener('fullscreenchange', handleFullscreenChange);
       window.removeEventListener('keydown', handleKeyDown);
-      window.removeEventListener('mousemove', resetControlsTimer);
-      window.removeEventListener('touchstart', resetControlsTimer);
-      if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
     };
   }, [toggleFullscreen]);
+
+  // 触屏激活后，若无进一步操作在 3.5 秒后自动隐退
+  useEffect(() => {
+    if (!isHovered) return;
+    const timer = setTimeout(() => {
+      setIsHovered(false);
+    }, 3500);
+    return () => clearTimeout(timer);
+  }, [isHovered]);
 
   return (
     <div
@@ -112,10 +105,13 @@ export default function RoadshowPage() {
       onDoubleClick={toggleFullscreen}
       title="双击或按 F 键切换全屏"
     >
-      {/* 顶部悬浮控制栏（展示时不干扰，自动微淡化） */}
+      {/* 顶部控制栏（平时完全隐藏，只有 hover 到右上角区域时才显现） */}
       <nav
-        className={`roadshow-controls ${controlsVisible ? 'is-active' : 'is-dimmed'}`}
+        className={`roadshow-controls ${isHovered ? 'is-hovered' : ''}`}
         aria-label="路演控制栏"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onTouchStart={() => setIsHovered((prev) => !prev)}
         onClick={(e) => e.stopPropagation()}
       >
         <button

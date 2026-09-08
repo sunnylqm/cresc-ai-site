@@ -30,27 +30,34 @@
   }
 }
 
-/* ---------------- 悬浮控制栏 ---------------- */
+/* ---------------- 悬浮控制栏（默认完全隐藏，仅 hover / 触碰时显示） ---------------- */
 
 .roadshow-controls {
   position: fixed;
-  top: 16px;
-  right: 20px;
+  top: 0;
+  right: 0;
+  padding: 16px 20px 20px 24px;
   z-index: 100;
   display: flex;
   align-items: center;
   gap: 10px;
-  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s ease;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 
-  &.is-dimmed {
-    opacity: 0.22;
-    transform: translateY(-2px);
+  .roadshow-btn {
+    pointer-events: none;
   }
 
-  &.is-active,
-  &:hover {
+  &:hover,
+  &:focus-within,
+  &.is-hovered {
     opacity: 1;
     transform: translateY(0);
+
+    .roadshow-btn {
+      pointer-events: auto;
+    }
   }
 }
 
@@ -721,8 +728,9 @@
 /* 平板竖屏或小屏幕（Portrait / Mobile / iPad 垂直立放） */
 @media (max-width: 900px), (max-aspect-ratio: 1/1) {
   .roadshow-controls {
-    top: 12px;
-    right: 14px;
+    top: 0;
+    right: 0;
+    padding: 12px 14px 16px 16px;
   }
 
   .roadshow-stage {
