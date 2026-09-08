@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { withBase } from '@rspress/core/runtime';
 import LottieBackground from './LottieBackground';
+import CuteMascot from './CuteMascot';
 
 export default function RoadshowPage() {
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -119,7 +120,7 @@ export default function RoadshowPage() {
           </div>
 
           <div className="roadshow-content">
-            {/* 核心文案区：巨幅视觉冲击标语与小字标注 */}
+            {/* 核心文案区：巨幅视觉冲击标语与小字标注（不提具体模型名字） */}
             <section className="roadshow-left">
               <div className="hero-typography">
                 <h1 className="hero-title-group">
@@ -131,27 +132,44 @@ export default function RoadshowPage() {
 
                 <div className="hero-note-pill">
                   <span className="pill-dot" aria-hidden="true" />
-                  <span className="pill-text">GPT Claude kimi DeepSeek glm等模型随意使用</span>
+                  <span className="pill-text">全网主流前沿大模型 · 随意畅用</span>
+                </div>
+
+                <div className="hero-badges-row">
+                  <span className="hero-badge">代码编程</span>
+                  <span className="hero-badge">深度推理</span>
+                  <span className="hero-badge">智能对话</span>
+                  <span className="hero-badge">极速稳定</span>
                 </div>
               </div>
             </section>
 
-            {/* 二维码展示区：静态超高对比度，秒扫 */}
+            {/* 二维码展示区：附带可爱跳动吉祥物与高对比度易扫二维码 */}
             <section className="roadshow-right">
-              <div className="qr-hero-card">
-                {/* 四角高科技对焦框 */}
-                <div className="qr-corner qr-corner--tl" />
-                <div className="qr-corner qr-corner--tr" />
-                <div className="qr-corner qr-corner--bl" />
-                <div className="qr-corner qr-corner--br" />
+              <div className="qr-card-container">
+                {/* 页面可爱吉祥物跳动动画 */}
+                <CuteMascot className="qr-mascot" />
 
-                {/* 二维码主体（纯净静态，无动画，超高对比度） */}
-                <div className="qr-viewport">
-                  <img
-                    src={withBase('/assets/image/qr-36k.png')}
-                    alt="加好友送$36 token"
-                    className="qr-code-image"
-                  />
+                <div className="qr-hero-card">
+                  {/* 四角高科技对焦框 */}
+                  <div className="qr-corner qr-corner--tl" />
+                  <div className="qr-corner qr-corner--tr" />
+                  <div className="qr-corner qr-corner--bl" />
+                  <div className="qr-corner qr-corner--br" />
+
+                  {/* 二维码主体（纯净静态，无变形，超高对比度，秒扫） */}
+                  <div className="qr-viewport">
+                    <img
+                      src={withBase('/assets/image/qr-36k.png')}
+                      alt="加微信好友送$36 token"
+                      className="qr-code-image"
+                    />
+                  </div>
+
+                  <div className="qr-caption">
+                    <span className="qr-caption-icon">📱</span>
+                    <span className="qr-caption-text">微信扫一扫 · 立即添加好友</span>
+                  </div>
                 </div>
               </div>
             </section>
