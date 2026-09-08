@@ -59,7 +59,6 @@ export default function RoadshowPage() {
     <div
       className={`roadshow-container ${isFullscreen ? 'is-fullscreen' : ''} view-${viewMode}`}
       onDoubleClick={toggleFullscreen}
-      title="双击或按 F 键切换全屏"
     >
       {/* 顶部控制栏（平时完全隐藏，只有 hover 到右上角区域时才显现） */}
       <nav
@@ -74,7 +73,6 @@ export default function RoadshowPage() {
           type="button"
           className="roadshow-btn"
           onClick={() => setViewMode((m) => (m === 'interactive' ? 'poster' : 'interactive'))}
-          title="切换互动大屏 / 原版海报视图 (快捷键 P)"
         >
           <span className="btn-icon">🔄</span>
           <span className="btn-text">
@@ -86,7 +84,6 @@ export default function RoadshowPage() {
           type="button"
           className="roadshow-btn roadshow-btn--primary"
           onClick={toggleFullscreen}
-          title="全屏显示 (快捷键 F / 双击屏幕)"
         >
           <span className="btn-icon">{isFullscreen ? '🗗' : '⛶'}</span>
           <span className="btn-text">{isFullscreen ? '退出全屏' : '全屏展示 (F)'}</span>
@@ -95,7 +92,6 @@ export default function RoadshowPage() {
         <a
           href={withBase('/')}
           className="roadshow-btn roadshow-btn--home"
-          title="返回主页"
         >
           <span>首页</span>
         </a>
@@ -140,7 +136,7 @@ export default function RoadshowPage() {
               </div>
             </section>
 
-            {/* 二维码展示区：静态超高对比度，方便现场秒扫 */}
+            {/* 二维码展示区：静态超高对比度，秒扫 */}
             <section className="roadshow-right">
               <div className="qr-hero-card">
                 {/* 四角高科技对焦框 */}
