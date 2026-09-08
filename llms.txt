@@ -1,6 +1,6 @@
-# Cresc AI 使用文档
+# 36k.ai
 
-> Cresc AI 官方文档，提供最稳定、最便捷的 AI 模型中转服务。
+> 提供 GPT、Claude、Kimi、DeepSeek、GLM 等模型的 Token 大幅折扣与技术支持服务。
 
 ## 模型广场
 
