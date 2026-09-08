@@ -1,27 +1,4 @@
 ---
-url: /cresc-ai-site/docs/token/1-intro.md
----
-
-# 模型广场
-
-划线的 **$** 为模型原价，其后 **¥** 为本站实付价，均按每百万 token 计。
-
-🔍
-
-分组：全部分组
-
-全部厂商
-
-共 **0** 个模型
-
-卡片表格
-
-正在获取实时模型费率中...
-
-
-
-
----
 url: /cresc-ai-site/docs/ccswitch/1-common.md
 ---
 
@@ -678,6 +655,29 @@ sudo dpkg -i cc-switch_x.x.x_amd64.deb
 CC-Switch CLI 同时提供完整 CLI 命令和完整 TUI 界面，适合服务器、SSH、macOS 终端和自动化场景使用。你也可以让 Claude Code / Codex 直接调用 `cc-switch` 命令来检查、切换和修复配置。
 
 查看详细教程：[CC Switch CLI 使用](/cresc-ai-site/docs/ccswitch/5-ccs_cli.md)
+
+
+
+---
+url: /cresc-ai-site/docs/token/1-intro.md
+---
+
+# 模型广场
+
+划线的 **$** 为模型原价，其后 **¥** 为本站实付价，均按每百万 token 计。
+
+🔍
+
+分组：全部分组
+
+全部厂商
+
+共 **0** 个模型
+
+卡片表格
+
+正在获取实时模型费率中...
+
 
 
 

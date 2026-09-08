@@ -2,20 +2,14 @@
 
 > 提供 GPT、Claude、Kimi、DeepSeek、GLM 等模型的 Token 大幅折扣与技术支持服务。
 
-## 模型广场
-
-- [模型广场](/cresc-ai-site/docs/token/1-intro.md)
-
-## CC-Switch使用
-
-- [通用步骤](/cresc-ai-site/docs/ccswitch/1-common.md)
-
 ## Others
 
+- [通用步骤](/cresc-ai-site/docs/ccswitch/1-common.md)
 - [Claude Code配置](/cresc-ai-site/docs/ccswitch/2-claude.md)
 - [Codex配置](/cresc-ai-site/docs/ccswitch/3-codex.md)
 - [Gemini配置](/cresc-ai-site/docs/ccswitch/4-gemini.md)
 - [CC Switch CLI 使用](/cresc-ai-site/docs/ccswitch/5-ccs_cli.md): Claude Code、Codex、Gemini、OpenCode 与 OpenClaw 的命令行管理工具 统一管理多个 AI 编码 CLI 的供应商配置，并支持 MCP、Skills、提示词、本地代理和环境检查等功能。
 - [CC-Switch使用教程](/cresc-ai-site/docs/ccswitch/index.md)
+- [模型广场](/cresc-ai-site/docs/token/1-intro.md)
 - [令牌分组介绍](/cresc-ai-site/docs/token/2-group.md)
 - [模型广场](/cresc-ai-site/docs/token/index.md)
