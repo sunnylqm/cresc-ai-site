@@ -36,13 +36,14 @@ export default defineConfig({
     socialLinks: [
       { icon: 'github', mode: 'link', content: 'https://github.com/cresc-ai-site/cresc-ai-site' },
     ],
-    nav: [
-      { text: '首页', link: '/' },
-      { text: '模型广场', link: '/docs/token/1-intro' },
-      { text: 'CC-Switch使用', link: '/docs/ccswitch/1-common' },
-      { text: '模型报价', link: 'https://ai.reactnative.cn/model-plaza' },
-      { text: 'Cresc AI 官网', link: 'https://www.cresc.dev' }
-    ],
+    // 先隐藏导航栏
+    // nav: [
+    //   { text: '首页', link: '/' },
+    //   { text: '模型广场', link: '/docs/token/1-intro' },
+    //   { text: 'CC-Switch使用', link: '/docs/ccswitch/1-common' },
+    //   { text: '模型报价', link: 'https://ai.reactnative.cn/model-plaza' },
+    //   { text: 'Cresc AI 官网', link: 'https://www.cresc.dev' }
+    // ],
     sidebar: {
       '/docs/': [
         {
