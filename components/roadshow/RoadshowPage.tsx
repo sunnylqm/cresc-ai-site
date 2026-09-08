@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { withBase } from '@rspress/core/runtime';
+import LottieBackground from './LottieBackground';
 const CAPABILITIES = [
   {
     id: 'code',
@@ -164,10 +165,9 @@ export default function RoadshowPage() {
       ) : (
         /* 模式二：展会大屏互动自适应版（横屏笔记本/平板完美填充，超高对比度，微动态吸睛） */
         <main className="roadshow-stage">
-          {/* 背景深色科技网格与氛围光晕 */}
+          {/* 背景：抽象 Lottie 循环动画与深色网格 */}
           <div className="cyber-ambient" aria-hidden="true">
-            <div className="ambient-blob ambient-blob--green" />
-            <div className="ambient-blob ambient-blob--pink" />
+            <LottieBackground />
             <div className="cyber-grid" />
           </div>
 
@@ -243,15 +243,13 @@ export default function RoadshowPage() {
                 <div className="qr-corner qr-corner--bl" />
                 <div className="qr-corner qr-corner--br" />
 
-                {/* 二维码主体 */}
+                {/* 二维码主体（纯净静态，无动画，超高对比度方便手机秒扫） */}
                 <div className="qr-viewport">
                   <img
                     src={withBase('/assets/image/qr-36k.png')}
                     alt="微信扫码添加好友，领取 $36 Token"
                     className="qr-code-image"
                   />
-                  {/* 极简激光扫光效果（引导视线扫码，柔和不刺眼） */}
-                  <div className="qr-scan-bar" aria-hidden="true" />
                 </div>
 
                 {/* 扫码引导提示 */}
