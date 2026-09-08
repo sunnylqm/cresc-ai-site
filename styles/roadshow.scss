@@ -4,11 +4,11 @@
  */
 
 .roadshow-container {
-  --bg-dark: #06070a;
-  --cyber-green: #38ef7d;
-  --cyber-lime: #a6ff00;
-  --cyber-pink: #ff007a;
-  --card-bg: rgba(18, 22, 30, 0.94);
+  --bg-dark: #050609;
+  --cyber-gold: #ffc107;
+  --cyber-amber: #ff9800;
+  --cyber-cyan: #38bdf8;
+  --card-bg: rgba(16, 20, 28, 0.95);
 
   position: relative;
   width: 100%;
@@ -80,19 +80,19 @@
 
   &:hover {
     background: rgba(34, 40, 54, 0.98);
-    border-color: rgba(56, 239, 125, 0.6);
+    border-color: rgba(255, 193, 7, 0.5);
     color: #ffffff;
-    box-shadow: 0 0 16px rgba(56, 239, 125, 0.35);
+    box-shadow: 0 0 16px rgba(255, 193, 7, 0.25);
   }
 
   &--primary {
-    background: linear-gradient(135deg, rgba(56, 239, 125, 0.28), rgba(166, 255, 0, 0.2));
-    border-color: rgba(56, 239, 125, 0.55);
-    color: #38ef7d;
+    background: linear-gradient(135deg, rgba(255, 193, 7, 0.25), rgba(255, 152, 0, 0.2));
+    border-color: rgba(255, 193, 7, 0.5);
+    color: #ffc107;
 
     &:hover {
-      background: linear-gradient(135deg, rgba(56, 239, 125, 0.45), rgba(166, 255, 0, 0.35));
-      border-color: #38ef7d;
+      background: linear-gradient(135deg, rgba(255, 193, 7, 0.42), rgba(255, 152, 0, 0.35));
+      border-color: #ffc107;
       color: #ffffff;
     }
   }
@@ -194,7 +194,7 @@
   margin: auto;
 }
 
-/* ---------------- 左侧核心标语与标注 ---------------- */
+/* ---------------- 左侧核心标语与标注（高冲击力、高端黑金配色） ---------------- */
 
 .roadshow-left {
   display: flex;
@@ -203,85 +203,82 @@
   z-index: 2;
 }
 
-/* 核心书法刷色标题：加好友送$36 token */
-.title-banner-group {
+.hero-typography {
   display: flex;
   flex-direction: column;
-  gap: clamp(14px, 2.2vh, 24px);
   align-items: flex-start;
-  margin-bottom: clamp(20px, 3vh, 32px);
 }
 
-.brush-tag {
-  display: inline-block;
-  font-style: italic;
-  font-weight: 900;
-  line-height: 1.15;
-  letter-spacing: 2px;
-  border-radius: 12px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
-  position: relative;
-  overflow: hidden;
+.hero-title-group {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1.6vh, 18px);
+  align-items: flex-start;
+}
 
-  &--green {
-    background: linear-gradient(135deg, #a6ff00, #22c55e);
-    color: #000000;
-    transform: rotate(-2deg);
-    padding: clamp(10px, 1.8vh, 18px) clamp(24px, 3.2vw, 44px);
-    font-size: clamp(44px, 6.5vw, 86px);
-    box-shadow: 0 8px 30px rgba(56, 239, 125, 0.45);
-    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.4);
-  }
+.hero-word {
+  display: block;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-weight: 950;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  white-space: nowrap;
 
-  &--pink {
-    background: linear-gradient(135deg, #ff007a, #ff1493);
+  &--action {
+    font-size: clamp(62px, 8.8vw, 118px);
     color: #ffffff;
-    transform: rotate(1.4deg);
-    padding: clamp(12px, 2vh, 22px) clamp(26px, 3.6vw, 48px);
-    font-size: clamp(48px, 7.5vw, 98px);
     text-shadow: 
-      2.5px 2.5px 0 #000,
-      -2.5px -2.5px 0 #000,
-      2.5px -2.5px 0 #000,
-      -2.5px 2.5px 0 #000,
-      0 4px 20px rgba(0, 0, 0, 0.8);
-    animation: neonPinkGlow 3.5s ease-in-out infinite alternate;
+      0 4px 24px rgba(0, 0, 0, 0.95),
+      0 0 45px rgba(255, 255, 255, 0.22);
+  }
+
+  &--reward {
+    font-size: clamp(68px, 9.8vw, 134px);
+    background: linear-gradient(135deg, #ffffff 0%, #fff275 22%, #ffb703 52%, #fb8500 82%, #ff5400 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 40px rgba(255, 183, 3, 0.52)) drop-shadow(0 6px 20px rgba(0, 0, 0, 0.95));
+    animation: goldShimmer 3.8s ease-in-out infinite alternate;
+
+    .gold-accent {
+      font-feature-settings: "tnum";
+      font-variant-numeric: tabular-nums;
+    }
   }
 }
 
-/* 微光扫过特效 */
-.shimmer-sweep {
-  position: absolute;
-  top: 0;
-  left: -120%;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.5),
-    transparent
-  );
-  transform: skewX(-25deg);
-  animation: sweepAnim 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
-
-/* 小字标注：GPT Claude kimi DeepSeek glm等模型随意使用 */
-.model-note {
+/* 底部胶囊标注 */
+.hero-note-pill {
   display: inline-flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(12px);
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1.5px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(16px);
   border-radius: 999px;
-  padding: clamp(8px, 1.4vh, 14px) clamp(18px, 2.4vw, 28px);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+  padding: clamp(10px, 1.4vh, 15px) clamp(20px, 2.4vw, 32px);
+  margin-top: clamp(24px, 3.8vh, 44px);
+  box-shadow: 
+    0 12px 32px rgba(0, 0, 0, 0.65),
+    0 0 24px rgba(255, 183, 3, 0.12);
+  transition: all 0.3s ease;
 
-  .note-text {
-    font-size: clamp(14px, 1.8vw, 22px);
+  .pill-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #ffb703;
+    box-shadow: 0 0 12px #ffb703, 0 0 24px #fb8500;
+    flex-shrink: 0;
+  }
+
+  .pill-text {
+    font-size: clamp(15px, 1.8vw, 23px);
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.9);
-    letter-spacing: 0.8px;
+    color: rgba(255, 255, 255, 0.92);
+    letter-spacing: 0.6px;
     line-height: 1.4;
   }
 }
@@ -297,13 +294,13 @@
 
 .qr-hero-card {
   position: relative;
-  background: linear-gradient(180deg, rgba(22, 27, 36, 0.94), rgba(12, 14, 20, 0.98));
-  border: 1.5px solid rgba(255, 255, 255, 0.16);
+  background: linear-gradient(180deg, rgba(20, 24, 32, 0.96), rgba(10, 12, 18, 0.98));
+  border: 1.5px solid rgba(255, 183, 3, 0.28);
   border-radius: 28px;
-  padding: clamp(20px, 2.8vh, 32px);
+  padding: clamp(22px, 3vh, 36px);
   box-shadow: 
-    0 24px 64px rgba(0, 0, 0, 0.8),
-    0 0 36px rgba(56, 239, 125, 0.18);
+    0 24px 64px rgba(0, 0, 0, 0.85),
+    0 0 45px rgba(255, 183, 3, 0.18);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -315,12 +312,12 @@
 /* 取景框四角高科技边框（纯净静态，无动画干扰） */
 .qr-corner {
   position: absolute;
-  width: 22px;
-  height: 22px;
-  border-color: var(--cyber-green);
+  width: 24px;
+  height: 24px;
+  border-color: #ffb703;
   border-style: solid;
   pointer-events: none;
-  opacity: 0.9;
+  opacity: 0.95;
 
   &--tl {
     top: 12px;
@@ -355,11 +352,11 @@
 .qr-viewport {
   position: relative;
   background: #ffffff;
-  border-radius: 22px;
-  padding: 14px;
-  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.45);
-  width: clamp(240px, 26vw, 340px);
-  height: clamp(240px, 26vw, 340px);
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
+  width: clamp(250px, 26vw, 360px);
+  height: clamp(250px, 26vw, 360px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -395,7 +392,7 @@
   width: 500px;
   height: 500px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(56, 239, 125, 0.2) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 183, 3, 0.18) 0%, transparent 70%);
   filter: blur(100px);
   pointer-events: none;
 }
@@ -417,26 +414,17 @@
   border-radius: 18px;
   box-shadow: 
     0 20px 60px rgba(0, 0, 0, 0.9),
-    0 0 40px rgba(56, 239, 125, 0.25);
+    0 0 40px rgba(255, 183, 3, 0.22);
 }
 
 /* ---------------- 动画特效关键帧 ---------------- */
 
-@keyframes neonPinkGlow {
+@keyframes goldShimmer {
   0% {
-    box-shadow: 0 8px 24px rgba(255, 0, 122, 0.35);
+    filter: drop-shadow(0 0 25px rgba(255, 183, 3, 0.4)) drop-shadow(0 6px 20px rgba(0, 0, 0, 0.9));
   }
   100% {
-    box-shadow: 0 12px 38px rgba(255, 0, 122, 0.65), 0 0 20px rgba(255, 0, 122, 0.4);
-  }
-}
-
-@keyframes sweepAnim {
-  0%, 65% {
-    left: -120%;
-  }
-  100% {
-    left: 220%;
+    filter: drop-shadow(0 0 52px rgba(255, 183, 3, 0.75)) drop-shadow(0 8px 26px rgba(0, 0, 0, 0.95));
   }
 }
 
@@ -460,7 +448,7 @@
 
   .roadshow-content {
     grid-template-columns: 1fr;
-    gap: clamp(24px, 4vh, 48px);
+    gap: clamp(28px, 4.5vh, 52px);
     margin: auto;
     text-align: center;
   }
@@ -469,60 +457,65 @@
     align-items: center;
   }
 
-  .title-banner-group {
+  .hero-typography {
     align-items: center;
   }
 
-  .model-note {
+  .hero-title-group {
+    align-items: center;
+  }
+
+  .hero-word {
+    white-space: normal;
+
+    &--action {
+      font-size: clamp(52px, 12vw, 84px);
+    }
+
+    &--reward {
+      font-size: clamp(56px, 13vw, 92px);
+    }
+  }
+
+  .hero-note-pill {
     text-align: center;
     justify-content: center;
   }
 
   .qr-hero-card {
     margin: 0 auto;
-    padding: clamp(16px, 2.5vh, 26px);
+    padding: clamp(18px, 2.5vh, 28px);
   }
 
   .qr-viewport {
-    width: clamp(220px, 52vw, 300px);
-    height: clamp(220px, 52vw, 300px);
+    width: clamp(230px, 55vw, 320px);
+    height: clamp(230px, 55vw, 320px);
   }
 }
 
 @media (max-width: 520px) {
-  .roadshow-controls {
-    top: 0;
-    right: 0;
-    gap: 6px;
+  .hero-word {
+    &--action {
+      font-size: clamp(40px, 13vw, 54px);
+    }
+
+    &--reward {
+      font-size: clamp(44px, 14vw, 58px);
+    }
   }
 
-  .roadshow-btn {
-    padding: 5px 10px;
-    font-size: 11px;
-  }
+  .hero-note-pill {
+    padding: 8px 16px;
+    border-radius: 999px;
 
-  .brush-tag--green {
-    font-size: clamp(32px, 8.5vw, 44px);
-    padding: 8px 18px;
-  }
-
-  .brush-tag--pink {
-    font-size: clamp(36px, 9.5vw, 48px);
-    padding: 10px 20px;
-  }
-
-  .model-note {
-    padding: 6px 14px;
-    border-radius: 12px;
-
-    .note-text {
+    .pill-text {
       font-size: 13px;
     }
   }
 
   .qr-viewport {
-    width: clamp(200px, 68vw, 260px);
-    height: clamp(200px, 68vw, 260px);
-    padding: 10px;
+    width: clamp(210px, 70vw, 270px);
+    height: clamp(210px, 70vw, 270px);
+    padding: 12px;
   }
 }

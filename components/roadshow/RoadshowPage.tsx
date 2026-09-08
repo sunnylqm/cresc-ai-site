@@ -123,20 +123,20 @@ export default function RoadshowPage() {
           </div>
 
           <div className="roadshow-content">
-            {/* 核心文案区：大字标语与小字标注 */}
+            {/* 核心文案区：巨幅视觉冲击标语与小字标注 */}
             <section className="roadshow-left">
-              <div className="title-banner-group">
-                <div className="brush-tag brush-tag--green">
-                  <span className="brush-text">加好友</span>
-                </div>
-                <div className="brush-tag brush-tag--pink">
-                  <span className="brush-text">送$36 token</span>
-                  <div className="shimmer-sweep" aria-hidden="true" />
-                </div>
-              </div>
+              <div className="hero-typography">
+                <h1 className="hero-title-group">
+                  <span className="hero-word hero-word--action">加好友</span>
+                  <span className="hero-word hero-word--reward">
+                    送 <span className="gold-accent">$36</span> Token
+                  </span>
+                </h1>
 
-              <div className="model-note">
-                <span className="note-text">GPT Claude kimi DeepSeek glm等模型随意使用</span>
+                <div className="hero-note-pill">
+                  <span className="pill-dot" aria-hidden="true" />
+                  <span className="pill-text">GPT Claude kimi DeepSeek glm等模型随意使用</span>
+                </div>
               </div>
             </section>
 
