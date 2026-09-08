@@ -1733,7 +1733,7 @@ url: /cresc-ai-site/roadshow.md
 
 # 微信加好友不废话直接送 $36 Token
 
-手把手教你用起来
+GPT Claude kimi DeepSeek glm 等各家模型随意使用
 
 ![加微信好友送$36 token](/cresc-ai-site/assets/image/qr-36k.png)
 
