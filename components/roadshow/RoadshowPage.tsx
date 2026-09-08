@@ -61,6 +61,16 @@ export default function RoadshowPage() {
       className={`roadshow-container ${isFullscreen ? 'is-fullscreen' : ''} view-${viewMode}`}
       onDoubleClick={toggleFullscreen}
     >
+      {/* 左上角品牌角标 */}
+      <a href={withBase('/')} className="roadshow-brand-corner">
+        <img
+          src={withBase('/36k.svg')}
+          alt="36k.ai"
+          className="corner-brand-logo"
+        />
+        <span className="corner-brand-name">36k.ai</span>
+      </a>
+
       {/* 顶部控制栏（平时完全隐藏，只有 hover 到右上角区域时才显现） */}
       <nav
         className={`roadshow-controls ${isHovered ? 'is-hovered' : ''}`}
@@ -167,6 +177,22 @@ export default function RoadshowPage() {
               </div>
             </section>
           </div>
+
+          {/* 底部品牌与宣传语 */}
+          <footer className="roadshow-footer">
+            <div className="footer-brand-badge">
+              <img
+                src={withBase('/36k.svg')}
+                alt="36k.ai"
+                className="footer-brand-logo"
+              />
+              <span className="footer-brand-title">36k.ai</span>
+            </div>
+            <span className="footer-dot" aria-hidden="true" />
+            <span className="footer-slogan">
+              全网主流前沿大模型 · 让每个人都能用上好用又实惠的 AI
+            </span>
+          </footer>
         </main>
       )}
     </div>

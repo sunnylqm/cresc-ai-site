@@ -180,7 +180,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: clamp(32px, 5vh, 56px) clamp(20px, 4vw, 64px);
+  padding: clamp(32px, 5vh, 56px) clamp(20px, 4vw, 64px) clamp(64px, 9vh, 96px);
   box-sizing: border-box;
 }
 
@@ -684,5 +684,140 @@
   .hero-badge {
     padding: 4px 10px;
     font-size: 11px;
+  }
+}
+
+/* ---------------- 左上角品牌角标 ---------------- */
+
+.roadshow-brand-corner {
+  position: fixed;
+  top: clamp(16px, 2.5vh, 24px);
+  left: clamp(20px, 3vw, 36px);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 50;
+  text-decoration: none;
+  background: rgba(22, 26, 36, 0.72);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  padding: 6px 14px 6px 8px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
+  transition: all 0.25s ease;
+
+  &:hover {
+    background: rgba(30, 36, 50, 0.92);
+    border-color: rgba(255, 183, 3, 0.5);
+    box-shadow: 0 0 16px rgba(255, 183, 3, 0.25);
+    transform: translateY(-1px);
+  }
+
+  .corner-brand-logo {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    display: block;
+  }
+
+  .corner-brand-name {
+    font-size: 14px;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 0.6px;
+  }
+}
+
+/* ---------------- 底部品牌与宣传语 ---------------- */
+
+.roadshow-footer {
+  position: absolute;
+  bottom: clamp(16px, 2.8vh, 28px);
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  z-index: 5;
+  pointer-events: none;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.footer-brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  padding: 3px 11px 3px 7px;
+  backdrop-filter: blur(12px);
+  flex-shrink: 0;
+}
+
+.footer-brand-logo {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  display: block;
+}
+
+.footer-brand-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+}
+
+.footer-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  flex-shrink: 0;
+}
+
+.footer-slogan {
+  font-size: clamp(12px, 1.1vw, 14px);
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 0.5px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+@media (max-width: 960px), (max-aspect-ratio: 1/1) {
+  .roadshow-brand-corner {
+    top: 12px;
+    left: 14px;
+    padding: 5px 12px 5px 7px;
+
+    .corner-brand-logo {
+      width: 18px;
+      height: 18px;
+    }
+
+    .corner-brand-name {
+      font-size: 13px;
+    }
+  }
+
+  .roadshow-footer {
+    position: relative;
+    bottom: auto;
+    margin-top: clamp(24px, 3vh, 40px);
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+  }
+
+  .footer-dot {
+    display: none;
+  }
+
+  .footer-slogan {
+    white-space: normal;
+    font-size: 12px;
   }
 }
