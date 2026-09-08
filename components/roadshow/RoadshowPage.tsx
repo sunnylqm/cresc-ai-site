@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { withBase } from '@rspress/core/runtime';
 import LottieBackground from './LottieBackground';
-import CuteMascot from './CuteMascot';
 
 export default function RoadshowPage() {
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -142,17 +141,14 @@ export default function RoadshowPage() {
 
                 <div className="hero-note-pill">
                   <span className="pill-dot" aria-hidden="true" />
-                  <span className="pill-text">手把手教你用起来</span>
+                  <span className="pill-text">GPT Claude kimi DeepSeek glm 等各家模型随意使用</span>
                 </div>
               </div>
             </section>
 
-            {/* 二维码展示区：附带可爱跳动吉祥物与高对比度易扫二维码 */}
+            {/* 二维码展示区：静态超高对比度，秒扫 */}
             <section className="roadshow-right">
               <div className="qr-card-container">
-                {/* 页面可爱吉祥物跳动动画 */}
-                <CuteMascot className="qr-mascot" />
-
                 <div className="qr-hero-card">
                   {/* 四角高科技对焦框 */}
                   <div className="qr-corner qr-corner--tl" />
