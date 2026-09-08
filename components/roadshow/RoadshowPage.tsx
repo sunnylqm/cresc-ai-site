@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { withBase } from '@rspress/core/runtime';
-import LottieBackground from './LottieBackground';
+
+const MODELS = ['GPT', 'Claude', 'DeepSeek', 'GLM', 'Kimi'];
 
 export default function RoadshowPage() {
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -60,14 +61,10 @@ export default function RoadshowPage() {
       className={`roadshow-container ${isFullscreen ? 'is-fullscreen' : ''} view-${viewMode}`}
       onDoubleClick={toggleFullscreen}
     >
-      {/* 左上角品牌角标 */}
-      <a href={withBase('/')} className="roadshow-brand-corner">
-        <img
-          src={withBase('/36k.svg')}
-          alt="36k.ai"
-          className="corner-brand-logo"
-        />
-        <span className="corner-brand-name">36k.ai</span>
+      {/* 左上角品牌标识 */}
+      <a href={withBase('/')} className="roadshow-brand">
+        <img src={withBase('/36k.svg')} alt="" className="roadshow-brand__mark" />
+        <span className="roadshow-brand__name">36k.ai</span>
       </a>
 
       {/* 顶部控制栏（平时完全隐藏，只有 hover 到右上角区域时才显现） */}
@@ -84,110 +81,71 @@ export default function RoadshowPage() {
           className="roadshow-btn"
           onClick={() => setViewMode((m) => (m === 'interactive' ? 'poster' : 'interactive'))}
         >
-          <span className="btn-icon">🔄</span>
-          <span className="btn-text">
-            {viewMode === 'interactive' ? '查看原版海报' : '切换大屏互动版'}
-          </span>
+          {viewMode === 'interactive' ? '原版海报 (P)' : '大屏互动版 (P)'}
         </button>
 
-        <button
-          type="button"
-          className="roadshow-btn roadshow-btn--primary"
-          onClick={toggleFullscreen}
-        >
-          <span className="btn-icon">{isFullscreen ? '🗗' : '⛶'}</span>
-          <span className="btn-text">{isFullscreen ? '退出全屏' : '全屏展示 (F)'}</span>
+        <button type="button" className="roadshow-btn" onClick={toggleFullscreen}>
+          {isFullscreen ? '退出全屏 (F)' : '全屏展示 (F)'}
         </button>
 
-        <a
-          href={withBase('/')}
-          className="roadshow-btn roadshow-btn--home"
-        >
-          <span>首页</span>
+        <a href={withBase('/')} className="roadshow-btn">
+          首页
         </a>
       </nav>
 
       {/* 模式一：原图海报全屏展示 */}
       {viewMode === 'poster' ? (
         <div className="poster-stage">
-          <div className="poster-ambient-glow" aria-hidden="true" />
-          <div className="poster-wrapper">
-            <img
-              src={withBase('/assets/image/36kai.png')}
-              alt="加好友送$36 token"
-              className="poster-img"
-            />
-          </div>
+          <img
+            src={withBase('/assets/image/36kai.png')}
+            alt="加好友送 $36 Token"
+            className="poster-img"
+          />
         </div>
       ) : (
-        /* 模式二：展会大屏版（纯净聚焦：加好友送$36 token + 小字标注 + 二维码） */
+        /* 模式二：展会大屏版（纯净聚焦：三段式主张 + 二维码） */
         <main className="roadshow-stage">
-          {/* 背景：抽象 Lottie 循环动画与深色网格 */}
-          <div className="cyber-ambient" aria-hidden="true">
-            <LottieBackground />
-            <div className="cyber-grid" />
-          </div>
-
           <div className="roadshow-content">
-            {/* 核心文案区：巨幅视觉冲击标语与小字标注（不提具体模型名字） */}
-            <section className="roadshow-left">
-              <div className="hero-typography">
-                <h1 className="hero-title-group">
-                  <span className="hero-word hero-word--action">微信加好友</span>
-                  <span className="hero-word hero-word--reward">
-                    不废话直接送 <span className="gold-accent">$36</span> Token
+            {/* 核心文案区：三段式主张 */}
+            <section className="rs-hero">
+              <h1 className="rs-hero__title">
+                <span className="rs-hero__line">微信加好友</span>
+                <span className="rs-hero__line">
+                  不废话直接送{' '}
+                  <span className="rs-hero__nowrap">
+                    <mark className="rs-hero__amount">$36</mark> Token
                   </span>
-                </h1>
+                </span>
+                <span className="rs-hero__line">手把手教你用起来</span>
+              </h1>
 
-                <div className="hero-note-pill">
-                  <span className="pill-dot" aria-hidden="true" />
-                  <span className="pill-text">GPT Claude kimi DeepSeek glm 等各家模型随意使用</span>
-                </div>
-              </div>
+              <p className="rs-hero__models">
+                {MODELS.map((name, i) => (
+                  <React.Fragment key={name}>
+                    {i > 0 && <span className="rs-hero__models-sep" aria-hidden="true" />}
+                    <span className="rs-hero__model">{name}</span>
+                  </React.Fragment>
+                ))}
+                <span className="rs-hero__models-tail">等模型任意使用</span>
+              </p>
             </section>
 
-            {/* 二维码展示区：静态超高对比度，秒扫 */}
-            <section className="roadshow-right">
-              <div className="qr-card-container">
-                <div className="qr-hero-card">
-                  {/* 四角高科技对焦框 */}
-                  <div className="qr-corner qr-corner--tl" />
-                  <div className="qr-corner qr-corner--tr" />
-                  <div className="qr-corner qr-corner--bl" />
-                  <div className="qr-corner qr-corner--br" />
-
-                  {/* 二维码主体（纯净静态，无变形，超高对比度，秒扫） */}
-                  <div className="qr-viewport">
-                    <img
-                      src={withBase('/assets/image/qr-36k.png')}
-                      alt="加微信好友送$36 token"
-                      className="qr-code-image"
-                    />
-                  </div>
-
-                  <div className="qr-caption">
-                    <span className="qr-caption-icon">📱</span>
-                    <span className="qr-caption-text">微信扫一扫 · 立即添加好友</span>
-                  </div>
-                </div>
+            {/* 二维码展示区：纯白底、静态、超高对比度 */}
+            <section className="rs-qr">
+              <div className="rs-qr__frame">
+                <img
+                  src={withBase('/assets/image/wechat-qr.png')}
+                  alt="微信二维码：加好友送 $36 Token"
+                  className="rs-qr__img"
+                />
               </div>
+              <p className="rs-qr__caption">微信扫一扫 · 立即添加好友</p>
             </section>
           </div>
 
-          {/* 底部品牌与宣传语 */}
+          {/* 底部宣传语 */}
           <footer className="roadshow-footer">
-            <div className="footer-brand-badge">
-              <img
-                src={withBase('/36k.svg')}
-                alt="36k.ai"
-                className="footer-brand-logo"
-              />
-              <span className="footer-brand-title">36k.ai</span>
-            </div>
-            <span className="footer-dot" aria-hidden="true" />
-            <span className="footer-slogan">
-              全网主流前沿大模型 · 让每个人都能用上好用又实惠的 AI
-            </span>
+            全网主流前沿大模型 · 让每个人都能用上好用又实惠的 AI
           </footer>
         </main>
       )}

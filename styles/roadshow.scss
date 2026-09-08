@@ -1,24 +1,30 @@
 /**
- * 路演大屏专用样式：高对比度、全屏沉浸感、微动效引导，
- * 专为展会/交流会现场笔记本与平板电脑展示设计。
+ * 路演大屏专用样式。
+ *
+ * 设计原则：极简、单色、超高对比度。
+ * 只有三种颜色 —— 近黑的底、近白的字、以及一层灰阶用于次要信息；
+ * 不用渐变、不用发光、不用胶囊、不用背景动画。
+ * 现场几米外一眼能读懂标语、一秒能扫上二维码，就是全部目标。
  */
 
 .roadshow-container {
-  --bg-dark: #050609;
-  --cyber-gold: #ffc107;
-  --cyber-amber: #ff9800;
-  --cyber-cyan: #38bdf8;
-  --card-bg: rgba(16, 20, 28, 0.95);
+  --ink: #f4f4f2; // 主文字（近白）
+  --ink-2: #9a9da1; // 次要文字
+  --ink-3: #5c5f63; // 分隔线 / 最弱信息
+  --paper: #0c0d0e; // 底色（近黑，与首页同一套墨色）
+  --line: #2a2c2f;
 
   position: relative;
   width: 100%;
   min-height: 100vh;
   min-height: 100dvh;
-  background: var(--bg-dark);
-  color: #ffffff;
+  background: var(--paper);
+  color: var(--ink);
   overflow-x: hidden;
   user-select: none;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto,
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  -webkit-font-smoothing: antialiased;
 
   &.is-fullscreen {
     position: fixed;
@@ -30,20 +36,52 @@
   }
 }
 
-/* ---------------- 悬浮控制栏（默认完全隐藏，仅 hover / 触碰时显示） ---------------- */
+/* ---------------- 左上角品牌标识 ---------------- */
+
+.roadshow-brand {
+  position: fixed;
+  top: clamp(18px, 3vh, 32px);
+  left: clamp(20px, 3.5vw, 48px);
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  opacity: 0.75;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &__mark {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    display: block;
+  }
+
+  &__name {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+  }
+}
+
+/* ---------------- 悬浮控制栏（默认隐藏，hover / 触碰右上角时显示） ---------------- */
 
 .roadshow-controls {
   position: fixed;
   top: 0;
   right: 0;
-  padding: 16px 20px 20px 24px;
   z-index: 100;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  padding: clamp(14px, 2.4vh, 26px) clamp(20px, 3.5vw, 48px) 24px 32px;
   opacity: 0;
-  transform: translateY(-6px);
-  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.2s ease;
 
   .roadshow-btn {
     pointer-events: none;
@@ -53,7 +91,6 @@
   &:focus-within,
   &.is-hovered {
     opacity: 1;
-    transform: translateY(0);
 
     .roadshow-btn {
       pointer-events: auto;
@@ -64,115 +101,29 @@
 .roadshow-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  background: rgba(22, 26, 35, 0.88);
-  backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 999px;
-  padding: 8px 16px;
-  color: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: transparent;
+  padding: 7px 14px;
+  color: var(--ink-2);
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 500;
+  font-family: inherit;
+  line-height: 1;
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  transition: border-color 0.15s ease, color 0.15s ease;
 
   &:hover {
-    background: rgba(34, 40, 54, 0.98);
-    border-color: rgba(255, 193, 7, 0.5);
-    color: #ffffff;
-    box-shadow: 0 0 16px rgba(255, 193, 7, 0.25);
-  }
-
-  &--primary {
-    background: linear-gradient(135deg, rgba(255, 193, 7, 0.25), rgba(255, 152, 0, 0.2));
-    border-color: rgba(255, 193, 7, 0.5);
-    color: #ffc107;
-
-    &:hover {
-      background: linear-gradient(135deg, rgba(255, 193, 7, 0.42), rgba(255, 152, 0, 0.35));
-      border-color: #ffc107;
-      color: #ffffff;
-    }
-  }
-
-  &--home {
-    padding: 8px 14px;
-    color: rgba(255, 255, 255, 0.7);
-  }
-
-  .btn-icon {
-    font-size: 14px;
-    line-height: 1;
+    border-color: var(--ink);
+    color: var(--ink);
   }
 }
 
-/* ---------------- 科技网格与氛围光晕 ---------------- */
-
-/* ---------------- Lottie 抽象循环动画背景 ---------------- */
-
-.cyber-ambient {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 0;
-}
-
-.lottie-bg-wrapper {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.lottie-bg-canvas {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 120vw;
-  height: 120vh;
-  min-width: 1300px;
-  min-height: 900px;
-  opacity: 0.42;
-  filter: blur(30px);
-  mix-blend-mode: screen;
-
-  svg {
-    width: 100% !important;
-    height: 100% !important;
-    transform: scale(1.15);
-  }
-}
-
-.lottie-bg-overlay {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(6, 7, 10, 0.3) 0%,
-    rgba(6, 7, 10, 0.78) 70%,
-    rgba(6, 7, 10, 0.96) 100%
-  );
-}
-
-.cyber-grid {
-  position: absolute;
-  inset: 0;
-  background-size: 48px 48px;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  opacity: 0.55;
-}
-
-/* ---------------- 主展示台结构 ---------------- */
+/* ---------------- 主展示台 ---------------- */
 
 .roadshow-stage {
   position: relative;
-  z-index: 1;
   width: 100%;
   min-height: 100vh;
   min-height: 100dvh;
@@ -180,643 +131,205 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: clamp(32px, 5vh, 56px) clamp(20px, 4vw, 64px) clamp(64px, 9vh, 96px);
+  padding: clamp(84px, 12vh, 132px) clamp(24px, 5vw, 80px) clamp(64px, 9vh, 96px);
   box-sizing: border-box;
 }
 
 .roadshow-content {
   width: 100%;
-  max-width: 1260px;
-  display: grid;
-  grid-template-columns: 1.28fr 0.72fr;
-  gap: clamp(36px, 4.5vw, 72px);
-  align-items: center;
+  max-width: 1320px;
   margin: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(40px, 5vw, 88px);
+  align-items: center;
 }
 
-/* ---------------- 左侧核心标语与标注（高冲击力、高端黑金配色） ---------------- */
+/* ---------------- 三段式主张 ---------------- */
 
-.roadshow-left {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  z-index: 2;
+.rs-hero {
+  min-width: 0;
 }
 
-.hero-typography {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.hero-title-group {
+.rs-hero__title {
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: clamp(10px, 1.8vh, 20px);
-  align-items: flex-start;
+  gap: clamp(8px, 1.4vh, 16px);
+  font-size: clamp(38px, 4.4vw, 76px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
 }
 
-.hero-word {
+.rs-hero__line {
   display: block;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-  font-weight: 950;
-  line-height: 1.08;
-  letter-spacing: -0.025em;
   white-space: nowrap;
-
-  &--action {
-    font-size: clamp(52px, 6.6vw, 92px);
-    color: #ffffff;
-    text-shadow: 
-      0 4px 24px rgba(0, 0, 0, 0.95),
-      0 0 45px rgba(255, 255, 255, 0.22);
-  }
-
-  &--reward {
-    font-size: clamp(34px, 4.2vw, 60px);
-    background: linear-gradient(135deg, #ffffff 0%, #fff275 22%, #ffb703 52%, #fb8500 82%, #ff5400 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 36px rgba(255, 183, 3, 0.48)) drop-shadow(0 6px 20px rgba(0, 0, 0, 0.95));
-    animation: goldShimmer 3.8s ease-in-out infinite alternate;
-
-    .gold-accent {
-      font-feature-settings: "tnum";
-      font-variant-numeric: tabular-nums;
-    }
-  }
 }
 
-/* 底部胶囊标注 */
-.hero-note-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  background: rgba(255, 255, 255, 0.07);
-  border: 1.5px solid rgba(255, 183, 3, 0.38);
-  backdrop-filter: blur(16px);
-  border-radius: 999px;
-  padding: clamp(12px, 1.6vh, 18px) clamp(24px, 2.6vw, 36px);
-  margin-top: clamp(28px, 4vh, 44px);
-  box-shadow: 
-    0 12px 32px rgba(0, 0, 0, 0.65),
-    0 0 26px rgba(255, 183, 3, 0.16);
-  transition: all 0.3s ease;
-
-  .pill-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #ffb703;
-    box-shadow: 0 0 12px #ffb703, 0 0 24px #fb8500;
-    flex-shrink: 0;
-  }
-
-  .pill-text {
-    font-size: clamp(18px, 2.2vw, 28px);
-    font-weight: 700;
-    color: #ffffff;
-    letter-spacing: 0.8px;
-    line-height: 1.35;
-  }
+/* 金额与单位始终同行，不被折行拆开 */
+.rs-hero__nowrap {
+  white-space: nowrap;
 }
 
-/* ---------------- 右侧核心二维码区域 ---------------- */
+/* 金额用反白实心块强调：只靠明暗对比，不引入第二种颜色 */
+.rs-hero__amount {
+  display: inline-block;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0 0.14em 0.06em;
+  margin: 0 0.04em;
+  border-radius: 4px;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
 
-.roadshow-right {
+/* 模型清单：一条细线之下的次要信息 */
+.rs-hero__models {
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
   align-items: center;
-  z-index: 2;
+  gap: 0 clamp(10px, 1vw, 16px);
+  margin: clamp(28px, 4vh, 48px) 0 0;
+  padding-top: clamp(20px, 3vh, 32px);
+  border-top: 1px solid var(--line);
+  font-size: clamp(17px, 1.85vw, 27px);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--ink);
 }
 
-.qr-hero-card {
-  position: relative;
-  background: linear-gradient(180deg, rgba(20, 24, 32, 0.96), rgba(10, 12, 18, 0.98));
-  border: 1.5px solid rgba(255, 183, 3, 0.28);
-  border-radius: 28px;
-  padding: clamp(22px, 3vh, 36px);
-  box-shadow: 
-    0 24px 64px rgba(0, 0, 0, 0.85),
-    0 0 45px rgba(255, 183, 3, 0.18);
+.rs-hero__models-sep {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--ink-3);
+  flex-shrink: 0;
+}
+
+.rs-hero__models-tail {
+  margin-left: clamp(4px, 0.6vw, 10px);
+  font-weight: 400;
+  color: var(--ink-2);
+}
+
+/* ---------------- 二维码 ---------------- */
+
+.rs-qr {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: fit-content;
-  box-sizing: border-box;
+  gap: clamp(14px, 2vh, 20px);
 }
 
-/* 取景框四角高科技边框（纯净静态，无动画干扰） */
-.qr-corner {
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  border-color: #ffb703;
-  border-style: solid;
-  pointer-events: none;
-  opacity: 0.95;
-
-  &--tl {
-    top: 12px;
-    left: 12px;
-    border-width: 3px 0 0 3px;
-    border-top-left-radius: 8px;
-  }
-
-  &--tr {
-    top: 12px;
-    right: 12px;
-    border-width: 3px 3px 0 0;
-    border-top-right-radius: 8px;
-  }
-
-  &--bl {
-    bottom: 12px;
-    left: 12px;
-    border-width: 0 0 3px 3px;
-    border-bottom-left-radius: 8px;
-  }
-
-  &--br {
-    bottom: 12px;
-    right: 12px;
-    border-width: 0 3px 3px 0;
-    border-bottom-right-radius: 8px;
-  }
-}
-
-/* 高对比度二维码卡片窗口（静态清晰） */
-.qr-viewport {
-  position: relative;
+.rs-qr__frame {
   background: #ffffff;
-  border-radius: 20px;
-  padding: 16px;
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
-  width: clamp(250px, 26vw, 360px);
-  height: clamp(250px, 26vw, 360px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+  border-radius: 6px;
+  padding: clamp(14px, 1.6vw, 22px);
+  line-height: 0;
 }
 
-.qr-code-image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+.rs-qr__img {
   display: block;
+  width: clamp(200px, 21vw, 300px);
+  height: auto;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+.rs-qr__caption {
+  margin: 0;
+  font-size: clamp(14px, 1.15vw, 17px);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--ink-2);
+}
+
+/* ---------------- 底部宣传语 ---------------- */
+
+.roadshow-footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: clamp(20px, 3.2vh, 34px);
+  padding: 0 24px;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: clamp(12px, 1vw, 14px);
+  letter-spacing: 0.03em;
+  color: var(--ink-3);
+  pointer-events: none;
 }
 
 /* ---------------- 原版海报模式 ---------------- */
 
 .poster-stage {
-  position: relative;
-  z-index: 1;
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   min-height: 100dvh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 24px;
   box-sizing: border-box;
 }
 
-.poster-ambient-glow {
-  position: absolute;
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 183, 3, 0.18) 0%, transparent 70%);
-  filter: blur(100px);
-  pointer-events: none;
-}
-
-.poster-wrapper {
-  position: relative;
-  max-height: calc(100vh - 80px);
-  max-height: calc(100dvh - 80px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .poster-img {
-  max-height: calc(100vh - 90px);
-  max-height: calc(100dvh - 90px);
+  max-height: calc(100dvh - 48px);
   max-width: 92vw;
   object-fit: contain;
-  border-radius: 18px;
-  box-shadow: 
-    0 20px 60px rgba(0, 0, 0, 0.9),
-    0 0 40px rgba(255, 183, 3, 0.22);
+  border-radius: 6px;
 }
 
-/* ---------------- 动画特效关键帧 ---------------- */
+/* ---------------- 响应式 ---------------- */
 
-@keyframes goldShimmer {
-  0% {
-    filter: drop-shadow(0 0 25px rgba(255, 183, 3, 0.4)) drop-shadow(0 6px 20px rgba(0, 0, 0, 0.9));
-  }
-  100% {
-    filter: drop-shadow(0 0 52px rgba(255, 183, 3, 0.75)) drop-shadow(0 8px 26px rgba(0, 0, 0, 0.95));
-  }
-}
-
-/* ---------------- 响应式断点适配 ---------------- */
-
-/* 平板竖屏或小屏幕（Portrait / Mobile / iPad 垂直立放） */
-@media (max-width: 960px), (max-aspect-ratio: 1/1) {
-  .roadshow-controls {
-    top: 0;
-    right: 0;
-    padding: 12px 14px 16px 16px;
-  }
-
+/* 平板竖屏 / 手机：改为单列，标语在上、二维码在下 */
+@media (max-width: 900px), (max-aspect-ratio: 1/1) {
   .roadshow-stage {
-    padding-top: clamp(60px, 8vh, 80px);
-    padding-bottom: clamp(24px, 4vh, 40px);
-    padding-left: clamp(16px, 4vw, 32px);
-    padding-right: clamp(16px, 4vw, 32px);
-    justify-content: center;
+    padding-top: clamp(76px, 11vh, 108px);
+    padding-bottom: clamp(28px, 4vh, 48px);
+  }
+
+  /* 单列时内容会变高，页脚改为跟随文档流，避免与二维码说明重叠 */
+  .roadshow-footer {
+    position: static;
+    margin-top: clamp(28px, 4vh, 48px);
+    padding: 0;
   }
 
   .roadshow-content {
-    grid-template-columns: 1fr;
-    gap: clamp(28px, 4.5vh, 52px);
-    margin: auto;
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
     text-align: center;
+    gap: clamp(36px, 5vh, 64px);
   }
 
-  .roadshow-left {
+  .rs-hero__title {
     align-items: center;
+    font-size: clamp(34px, 7.4vw, 62px);
   }
 
-  .hero-typography {
-    align-items: center;
+  .rs-hero__models {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 560px) {
+  .rs-hero__title {
+    font-size: clamp(28px, 8.6vw, 40px);
   }
 
-  .hero-title-group {
-    align-items: center;
-  }
-
-  .hero-word {
+  .rs-hero__line {
     white-space: normal;
-
-    &--action {
-      font-size: clamp(40px, 9vw, 68px);
-    }
-
-    &--reward {
-      font-size: clamp(26px, 5.8vw, 42px);
-      line-height: 1.2;
-    }
   }
 
-  .hero-note-pill {
-    text-align: center;
-    justify-content: center;
+  .rs-hero__models {
+    font-size: 15px;
+    gap: 0 8px;
   }
 
-  .qr-hero-card {
-    margin: 0 auto;
-    padding: clamp(18px, 2.5vh, 28px);
-  }
-
-  .qr-viewport {
-    width: clamp(230px, 55vw, 320px);
-    height: clamp(230px, 55vw, 320px);
-  }
-}
-
-@media (max-width: 520px) {
-  .hero-word {
-    &--action {
-      font-size: clamp(32px, 9.8vw, 44px);
-    }
-
-    &--reward {
-      font-size: clamp(20px, 6.2vw, 28px);
-      line-height: 1.25;
-    }
-  }
-
-  .hero-note-pill {
-    padding: 10px 20px;
-    border-radius: 999px;
-
-    .pill-text {
-      font-size: 16px;
-    }
-  }
-
-  .qr-viewport {
-    width: clamp(210px, 70vw, 270px);
-    height: clamp(210px, 70vw, 270px);
-    padding: 12px;
-  }
-}
-
-/* ---------------- 核心特性标签行 ---------------- */
-
-.hero-badges-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: clamp(16px, 2.2vh, 24px);
-}
-
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 6px 14px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 999px;
-  font-size: clamp(12px, 1.1vw, 15px);
-  color: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(10px);
-  letter-spacing: 0.4px;
-  transition: all 0.25s ease;
-
-  &:hover {
-    border-color: rgba(255, 183, 3, 0.5);
-    color: #ffc107;
-    background: rgba(255, 183, 3, 0.12);
-  }
-}
-
-/* ---------------- 二维码容器与说明 ---------------- */
-
-.qr-card-container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.qr-caption {
-  margin-top: 14px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: rgba(255, 255, 255, 0.88);
-  font-size: clamp(13px, 1.25vw, 16px);
-  font-weight: 500;
-  letter-spacing: 0.5px;
-
-  .qr-caption-icon {
-    font-size: 16px;
-    line-height: 1;
-  }
-}
-
-/* ---------------- 可爱型 Lottie 吉祥物跳动动效 ---------------- */
-
-.cute-mascot-wrapper {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 10;
-  outline: none;
-  margin-bottom: -16px;
-  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-  filter: drop-shadow(0 10px 24px rgba(56, 189, 248, 0.35));
-
-  &:hover {
-    transform: scale(1.08);
-  }
-
-  &.is-interacting .cute-mascot-bounce {
-    animation: mascotJoyfulHop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 2;
-  }
-}
-
-.cute-mascot-bounce {
-  position: relative;
-  width: clamp(110px, 12vw, 150px);
-  height: clamp(110px, 12vw, 150px);
-  animation: cuteBounce 2.1s cubic-bezier(0.42, 0, 0.58, 1) infinite;
-  transform-origin: bottom center;
-}
-
-.cute-mascot-canvas {
-  width: 100%;
-  height: 100%;
-
-  svg {
-    width: 100% !important;
-    height: 100% !important;
-    overflow: visible;
-  }
-}
-
-.cute-mascot-ground-shadow {
-  width: clamp(55px, 6.5vw, 85px);
-  height: 12px;
-  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.65) 0%, rgba(56, 189, 248, 0.35) 45%, transparent 75%);
-  border-radius: 50%;
-  margin-top: -10px;
-  animation: cuteShadowPulse 2.1s cubic-bezier(0.42, 0, 0.58, 1) infinite;
-}
-
-@keyframes cuteBounce {
-  0%, 100% {
-    transform: translateY(0) scale(1, 1);
-  }
-  25% {
-    transform: translateY(-22px) scale(0.96, 1.05);
-  }
-  50% {
-    transform: translateY(-28px) scale(0.98, 1.02);
-  }
-  75% {
-    transform: translateY(-4px) scale(1.04, 0.96);
-  }
-}
-
-@keyframes cuteShadowPulse {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.75;
-  }
-  50% {
-    transform: scale(0.62);
-    opacity: 0.25;
-  }
-}
-
-@keyframes mascotJoyfulHop {
-  0%, 100% {
-    transform: translateY(0) scale(1, 1) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-38px) scale(1.1, 0.9) rotate(8deg);
-  }
-}
-
-@media (max-width: 960px), (max-aspect-ratio: 1/1) {
-  .hero-badges-row {
-    justify-content: center;
-  }
-
-  .cute-mascot-bounce {
-    width: clamp(90px, 18vw, 125px);
-    height: clamp(90px, 18vw, 125px);
-  }
-}
-
-@media (max-width: 520px) {
-  .hero-badges-row {
-    gap: 6px;
-    margin-top: 12px;
-    justify-content: center;
-  }
-
-  .hero-badge {
-    padding: 4px 10px;
-    font-size: 11px;
-  }
-}
-
-/* ---------------- 左上角品牌角标 ---------------- */
-
-.roadshow-brand-corner {
-  position: fixed;
-  top: clamp(16px, 2.5vh, 24px);
-  left: clamp(20px, 3vw, 36px);
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  z-index: 50;
-  text-decoration: none;
-  background: rgba(22, 26, 36, 0.72);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 999px;
-  padding: 6px 14px 6px 8px;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
-  transition: all 0.25s ease;
-
-  &:hover {
-    background: rgba(30, 36, 50, 0.92);
-    border-color: rgba(255, 183, 3, 0.5);
-    box-shadow: 0 0 16px rgba(255, 183, 3, 0.25);
-    transform: translateY(-1px);
-  }
-
-  .corner-brand-logo {
-    width: 22px;
-    height: 22px;
-    border-radius: 6px;
-    display: block;
-  }
-
-  .corner-brand-name {
-    font-size: 14px;
-    font-weight: 800;
-    color: #ffffff;
-    letter-spacing: 0.6px;
-  }
-}
-
-/* ---------------- 底部品牌与宣传语 ---------------- */
-
-.roadshow-footer {
-  position: absolute;
-  bottom: clamp(16px, 2.8vh, 28px);
-  left: 0;
-  right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  z-index: 5;
-  pointer-events: none;
-  padding: 0 20px;
-  box-sizing: border-box;
-}
-
-.footer-brand-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 999px;
-  padding: 3px 11px 3px 7px;
-  backdrop-filter: blur(12px);
-  flex-shrink: 0;
-}
-
-.footer-brand-logo {
-  width: 16px;
-  height: 16px;
-  border-radius: 4px;
-  display: block;
-}
-
-.footer-brand-title {
-  font-size: 13px;
-  font-weight: 700;
-  color: #ffffff;
-  letter-spacing: 0.5px;
-}
-
-.footer-dot {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.35);
-  flex-shrink: 0;
-}
-
-.footer-slogan {
-  font-size: clamp(12px, 1.1vw, 14px);
-  color: rgba(255, 255, 255, 0.65);
-  letter-spacing: 0.5px;
-  font-weight: 400;
-  white-space: nowrap;
-}
-
-@media (max-width: 960px), (max-aspect-ratio: 1/1) {
-  .roadshow-brand-corner {
-    top: 12px;
-    left: 14px;
-    padding: 5px 12px 5px 7px;
-
-    .corner-brand-logo {
-      width: 18px;
-      height: 18px;
-    }
-
-    .corner-brand-name {
-      font-size: 13px;
-    }
-  }
-
-  .roadshow-footer {
-    position: relative;
-    bottom: auto;
-    margin-top: clamp(24px, 3vh, 40px);
-    flex-direction: column;
-    gap: 6px;
-    text-align: center;
-  }
-
-  .footer-dot {
-    display: none;
-  }
-
-  .footer-slogan {
-    white-space: normal;
-    font-size: 12px;
+  .rs-qr__img {
+    width: min(66vw, 260px);
   }
 }
