@@ -2,7 +2,7 @@
 
 原版海报 (P)全屏展示 (F)[首页](/cresc-ai-site/)
 
-# 微信加好友直接送 $36 Token手把手教你用起来
+# 微信加好友直接送 $36 Token手把手教你用 AI
 
 GPTClaudeDeepSeekGLMKimi等模型任意使用
 
