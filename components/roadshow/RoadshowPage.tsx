@@ -136,7 +136,7 @@ export default function RoadshowPage() {
                 <span className="rs-hero__models-tail">等模型任意使用</span>
               </p>
 
-              {/* 额度条：吃豆人来回把豆子吃光，回程又一颗颗长回来 */}
+              {/* 额度条：吃豆人把豆子吃光，到头掉个方向、重新摆满，再吃回来 */}
               <div className="rs-quota">
                 <div className="rs-quota__track" aria-hidden="true">
                   <span className="rs-quota__beans">
