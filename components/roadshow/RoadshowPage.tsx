@@ -123,7 +123,7 @@ export default function RoadshowPage() {
                     <mark className="rs-hero__amount">$36</mark> Token
                   </span>
                 </span>
-                <span className="rs-hero__line">手把手教你用起来</span>
+                <span className="rs-hero__line">手把手教你用 AI</span>
               </h1>
 
               <p className="rs-hero__models">
