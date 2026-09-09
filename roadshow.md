@@ -6,6 +6,8 @@
 
 GPTClaudeDeepSeekGLMKimi等模型任意使用
 
+**$36 额度**敞开了吃 · 吃完再说
+
 ![微信二维码：加好友送 $36 Token](/cresc-ai-site/assets/image/wechat-qr.png)
 
 随时聊，随便问。
