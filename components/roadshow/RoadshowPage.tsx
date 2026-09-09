@@ -118,7 +118,7 @@ export default function RoadshowPage() {
               <h1 className="rs-hero__title">
                 <span className="rs-hero__line">微信加好友</span>
                 <span className="rs-hero__line">
-                  不废话直接送{' '}
+                  直接送{' '}
                   <span className="rs-hero__nowrap">
                     <mark className="rs-hero__amount">$36</mark> Token
                   </span>
