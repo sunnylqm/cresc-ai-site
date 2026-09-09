@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { withBase } from '@rspress/core/runtime';
 
 const MODELS = ['GPT', 'Claude', 'DeepSeek', 'GLM', 'Kimi'];
@@ -8,10 +8,35 @@ const MODELS = ['GPT', 'Claude', 'DeepSeek', 'GLM', 'Kimi'];
 // 这样「走一步」和「嚼一口」是同一个节拍（见 roadshow.scss）。
 const QUOTA_BEANS = 25;
 
+// 额度条的时间线，必须和 roadshow.scss 里的 --chomp / --lap 保持一致
+const CHOMP_MS = 260;
+const LAP_MS = CHOMP_MS * 52;
+
+// 街机原版的四只鬼
+const GHOSTS = ['blinky', 'pinky', 'inky', 'clyde'] as const;
+const FRUITS = ['cherry', 'strawberry', 'orange'] as const;
+
+type Companion =
+  | { id: number; kind: 'ghost'; variant: string; rtl: boolean }
+  | { id: number; kind: 'fruit'; variant: string; at: number }
+  | null;
+
+const pick = <T,>(list: readonly T[]): T => list[Math.floor(Math.random() * list.length)];
+
+/** 每次掉头后随机抽一个同伴：鬼在身后追、水果摆在路中间等着被吃，也可能什么都不来。 */
+function rollCompanion(id: number, rtl: boolean): Companion {
+  const r = Math.random();
+  if (r < 0.4) return { id, kind: 'ghost', variant: pick(GHOSTS), rtl };
+  if (r < 0.72) return { id, kind: 'fruit', variant: pick(FRUITS), at: 7 + Math.floor(Math.random() * 11) };
+  return null;
+}
+
 export default function RoadshowPage() {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [viewMode, setViewMode] = useState<'interactive' | 'poster'>('interactive');
   const [isHovered, setIsHovered] = useState(false);
+  const [companion, setCompanion] = useState<Companion>(null);
+  const pacRef = useRef<HTMLSpanElement>(null);
 
   // 全屏切换逻辑
   const toggleFullscreen = useCallback(async () => {
@@ -51,6 +76,33 @@ export default function RoadshowPage() {
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [toggleFullscreen]);
+
+  /*
+   * 额度条的同伴：每走完一趟掉头时换一个。
+   *
+   * 时机是从吃豆人那条 CSS 动画的 currentTime 里读出来的，而不是自己起一个
+   * setInterval —— 后者跟 CSS 的时间线各走各的，几分钟就会漂开，鬼会在半路
+   * 凭空出现。读 currentTime 则永远咬着动画的相位。
+   */
+  useEffect(() => {
+    if (viewMode !== 'interactive') return;
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
+
+    let leg = -1;
+    let seq = 0;
+    const timer = window.setInterval(() => {
+      const anim = pacRef.current?.getAnimations?.()[0];
+      const now = typeof anim?.currentTime === 'number' ? anim.currentTime : null;
+      if (now === null) return;
+      // 一圈两趟：前半圈往右，后半圈往左
+      const next = ((now % LAP_MS) + LAP_MS) % LAP_MS < LAP_MS / 2 ? 0 : 1;
+      if (next === leg) return;
+      leg = next;
+      setCompanion(rollCompanion((seq += 1), leg === 1));
+    }, 120);
+
+    return () => window.clearInterval(timer);
+  }, [viewMode]);
 
   // 触屏激活后，若无进一步操作在 3.5 秒后自动隐退
   useEffect(() => {
@@ -143,8 +195,30 @@ export default function RoadshowPage() {
                     {Array.from({ length: QUOTA_BEANS }, (_, i) => (
                       <i key={i} className="rs-quota__bean" />
                     ))}
+                    {/* 水果放在豆子这一层里，于是同一个 clip 会把它一起吃掉 */}
+                    {companion?.kind === 'fruit' && (
+                      <i
+                        key={companion.id}
+                        className={`rs-quota__fruit rs-quota__fruit--${companion.variant}`}
+                        style={{ '--at': companion.at } as React.CSSProperties}
+                      />
+                    )}
                   </span>
-                  <span className="rs-quota__pac">
+
+                  {companion?.kind === 'ghost' && (
+                    <span
+                      key={companion.id}
+                      className={`rs-quota__ghost rs-quota__ghost--${companion.variant} ${
+                        companion.rtl ? 'is-rtl' : ''
+                      }`}
+                    >
+                      <i className="rs-quota__ghost-skirt" />
+                      <i className="rs-quota__eye rs-quota__eye--l" />
+                      <i className="rs-quota__eye rs-quota__eye--r" />
+                    </span>
+                  )}
+
+                  <span className="rs-quota__pac" ref={pacRef}>
                     <span className="rs-quota__jaw rs-quota__jaw--top" />
                     <span className="rs-quota__jaw rs-quota__jaw--bottom" />
                   </span>

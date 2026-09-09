@@ -5,6 +5,10 @@
  * 只有三种颜色 —— 近黑的底、近白的字、以及一层灰阶用于次要信息；
  * 不用渐变、不用发光、不用胶囊、不用背景动画。
  * 现场几米外一眼能读懂标语、一秒能扫上二维码，就是全部目标。
+ *
+ * 唯一的破例是底下那条吃豆人额度条：它照搬街机原版配色（吃豆人正黄、
+ * 豆子浅肉色、四只鬼各自的颜色）。那是个二十来像素高的彩蛋，梗本身就是
+ * 靠这几个颜色认出来的，换成黑白就不成立了；除此之外整页仍旧是单色。
  */
 
 .roadshow-container {
@@ -266,6 +270,12 @@
 .rs-quota {
   --pac: clamp(19px, 1.65vw, 26px); // 吃豆人直径
   --bean: 5px; // 豆子直径
+
+  // 街机原版取色
+  --pac-yellow: #ffff00;
+  --bean-peach: #ffb8ae;
+  --ghost-eye: #ffffff;
+  --ghost-pupil: #2121de;
   --chomp: 0.26s; // 一次完整开合 ≈ 街机原速
   --lap: calc(var(--chomp) * 52); // 24 口去 + 2 口掉头 + 24 口回 + 2 口掉头
 
@@ -281,6 +291,8 @@
   position: relative;
   width: 100%;
   height: var(--pac);
+  // 鬼是从轨道外面追进来的，越界的部分裁掉，看着就像从通道口冒出来
+  overflow: hidden;
 }
 
 /*
@@ -309,7 +321,7 @@
   width: var(--bean);
   height: var(--bean);
   border-radius: 50%;
-  background: var(--ink-2);
+  background: var(--bean-peach);
 }
 
 .rs-quota__pac {
@@ -327,7 +339,7 @@
   left: 0;
   width: 100%;
   height: 50%;
-  background: var(--ink);
+  background: var(--pac-yellow);
   animation: quotaChompTop calc(var(--chomp) / 2) ease-in-out infinite alternate;
 
   // 静态角度：关掉动画（prefers-reduced-motion）时仍是一张张着的嘴，而不是个圆饼
@@ -344,6 +356,172 @@
     transform-origin: 50% 0;
     transform: rotate(20deg);
     animation-name: quotaChompBottom;
+  }
+}
+
+/* ---------------- 掉头后随机出现的鬼 / 水果 ---------------- */
+
+/*
+ * 鬼跟在吃豆人身后三个豆位，跟着它一起穿过整条轨道。
+ * 每趟只活 24 口（走完就到掉头，元素随即被卸掉），所以动画不用循环。
+ */
+.rs-quota__ghost {
+  position: absolute;
+  top: 0;
+  width: var(--pac);
+  height: var(--pac);
+  color: var(--ghost-body);
+  animation: quotaChaseLtr calc(var(--chomp) * 24) linear forwards;
+
+  &.is-rtl {
+    animation-name: quotaChaseRtl;
+  }
+
+  // 身子：圆头 + 直筒
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 22% 0;
+    background: currentColor;
+    border-radius: 50% 50% 0 0 / 62% 62% 0 0;
+  }
+
+  &--blinky {
+    --ghost-body: #ff0000;
+  }
+  &--pinky {
+    --ghost-body: #ffb8ff;
+  }
+  &--inky {
+    --ghost-body: #00ffff;
+  }
+  &--clyde {
+    --ghost-body: #ffb852;
+  }
+}
+
+/* 裙摆：三个半圆凸起，就是原版那排锯齿 */
+.rs-quota__ghost-skirt {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 24%;
+  background: radial-gradient(circle at 50% 0, currentColor 0 52%, transparent 53%) 0 0 /
+    33.34% 100% repeat-x;
+}
+
+.rs-quota__eye {
+  position: absolute;
+  top: 26%;
+  width: 27%;
+  height: 34%;
+  border-radius: 50%;
+  background: var(--ghost-eye);
+
+  // 瞳孔看着行进方向
+  &::after {
+    content: "";
+    position: absolute;
+    top: 30%;
+    right: 4%;
+    width: 55%;
+    height: 45%;
+    border-radius: 50%;
+    background: var(--ghost-pupil);
+  }
+
+  &--l {
+    left: 15%;
+  }
+
+  &--r {
+    right: 15%;
+  }
+
+  .is-rtl &::after {
+    right: auto;
+    left: 4%;
+  }
+}
+
+/*
+ * 水果摆在第 --at 个豆位上。它是豆子层的孩子，所以吃豆人跑过去时
+ * 会被同一个 clip-path 一起吃掉，不用另写逻辑。
+ */
+.rs-quota__fruit {
+  position: absolute;
+  top: 50%;
+  left: calc(var(--bean) / 2 + (100% - var(--bean)) * var(--at) / 24);
+  width: calc(var(--pac) * 0.72);
+  height: calc(var(--pac) * 0.72);
+  transform: translate(-50%, -50%);
+
+  // 果实
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 78%;
+    background: var(--fruit-body);
+    border-radius: 50%;
+  }
+
+  // 梗 / 叶
+  &::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 16%;
+    height: 34%;
+    background: #00d000;
+    transform: translateX(-50%) rotate(14deg);
+    border-radius: 2px;
+  }
+
+  &--cherry {
+    --fruit-body: #ff0000;
+
+    // 樱桃是两颗，右边那颗小一点、低一点
+    &::before {
+      width: 62%;
+      height: 62%;
+      box-shadow: calc(var(--pac) * 0.26) calc(var(--pac) * -0.05) 0 calc(var(--pac) * -0.04)
+        var(--fruit-body);
+    }
+  }
+
+  &--strawberry {
+    --fruit-body: #ff2020;
+
+    &::before {
+      border-radius: 50% 50% 46% 46% / 42% 42% 62% 62%;
+    }
+  }
+
+  &--orange {
+    --fruit-body: #ffb852;
+  }
+}
+
+@keyframes quotaChaseLtr {
+  from {
+    left: calc((100% - var(--pac)) * -0.125);
+  }
+  to {
+    left: calc((100% - var(--pac)) * 0.875);
+  }
+}
+
+@keyframes quotaChaseRtl {
+  from {
+    left: calc((100% - var(--pac)) * 1.125);
+  }
+  to {
+    left: calc((100% - var(--pac)) * 0.125);
   }
 }
 
