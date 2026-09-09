@@ -250,14 +250,20 @@
 /* ---------------- 额度条：吃豆人 ---------------- */
 
 /*
- * 一条由「豆子」组成的额度条，吃豆人从左往右一路吃光，
- * 到头掉个方向往回走，豆子在它身后又一颗颗长回来 —— 呼应「敞开了吃」。
- * 全部是纯 CSS，仍旧只有黑白两色，尺寸也只占标语底下窄窄一条，不抢主视觉。
+ * 一条由「豆子」组成的额度条，吃豆人从左往右一路吃光，到头掉个方向往回走，
+ * 豆子在它身后又一颗颗长回来 —— 呼应「敞开了吃」。
+ *
+ * 关键是嘴和豆子必须对上：豆子是一颗颗画出来的（固定 24 颗、space-between 摊开），
+ * 所以「走完一趟」不管容器多宽都恰好是 24 个豆位；再把单程时长定成 24 次开合，
+ * 就得到「一口一颗」。掉头和起步的停顿也都取整数口，整条时间线是 52 口，
+ * 循环回到起点时嘴的相位分毫不差，不会越跑越偏。
  */
 
 .rs-quota {
   --pac: clamp(17px, 1.45vw, 23px); // 吃豆人直径
-  --bean: clamp(14px, 1.15vw, 19px); // 豆子间距
+  --bean: 4px; // 豆子直径
+  --chomp: 0.26s; // 一次完整开合 ≈ 街机原速
+  --lap: calc(var(--chomp) * 52); // 24 口去 + 2 口掉头 + 24 口回 + 2 口起步
 
   display: flex;
   flex-direction: column;
@@ -273,16 +279,30 @@
   height: var(--pac);
 }
 
-/* 豆子：一排等距圆点，靠 clip-path 的左边缘跟着吃豆人走来实现「被吃掉」 */
-.rs-quota__dots {
+/*
+ * 豆子这一层左右各外扩半颗豆子，于是 space-between 摊开后，
+ * 25 颗豆子的圆心恰好落在嘴一路经过的 25 个位置上。
+ * 再用 clip-path 的左边缘去「吃」：从 半颗 到 100% - 半颗 线性插值，
+ * 得到的正是嘴（left + pac）的轨迹，所以豆子是在嘴边消失、也在嘴边长回来的。
+ */
+.rs-quota__beans {
   position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle at center, var(--ink-2) 1.8px, transparent 2.2px);
-  background-size: var(--bean) 100%;
-  background-repeat: repeat-x;
-  // 末端淡出，免得最后一颗豆子被容器边缘切成半个
-  mask-image: linear-gradient(90deg, #000 94%, transparent);
-  animation: quotaBeans 9s linear infinite;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--pac) - var(--bean) / 2);
+  right: calc(var(--bean) / -2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  animation: quotaBeans var(--lap) linear infinite;
+}
+
+.rs-quota__bean {
+  flex: none;
+  width: var(--bean);
+  height: var(--bean);
+  border-radius: 50%;
+  background: var(--ink-2);
 }
 
 .rs-quota__pac {
@@ -291,7 +311,7 @@
   left: 0;
   width: var(--pac);
   height: var(--pac);
-  animation: quotaRun 9s linear infinite;
+  animation: quotaRun var(--lap) linear infinite;
 }
 
 /* 上下两片半圆开合，就是最经典的那张嘴 */
@@ -301,7 +321,7 @@
   width: 100%;
   height: 50%;
   background: var(--ink);
-  animation: quotaChompTop 0.34s ease-in-out infinite alternate;
+  animation: quotaChompTop calc(var(--chomp) / 2) ease-in-out infinite alternate;
 
   // 静态角度：关掉动画（prefers-reduced-motion）时仍是一张张着的嘴，而不是个圆饼
   &--top {
@@ -333,63 +353,60 @@
   }
 }
 
+/* 从合到开：合上的那一刻正好咬到一颗豆子，且严丝合缝没有缝隙 */
 @keyframes quotaChompTop {
   from {
-    transform: rotate(2deg);
+    transform: rotate(0deg);
   }
   to {
-    transform: rotate(34deg);
+    transform: rotate(35deg);
   }
 }
 
 @keyframes quotaChompBottom {
   from {
-    transform: rotate(-2deg);
+    transform: rotate(0deg);
   }
   to {
-    transform: rotate(-34deg);
+    transform: rotate(-35deg);
   }
 }
 
-/* 去程吃光、原地掉头（scaleX 过零点顺带做出转身的挤压感）、回程走回起点 */
+/* 46.1538% = 24/52，50% = 26/52，96.1538% = 50/52 */
 @keyframes quotaRun {
-  0%,
-  4% {
+  0% {
     left: 0;
     transform: scaleX(1);
   }
-  46% {
+  46.1538% {
     left: calc(100% - var(--pac));
     transform: scaleX(1);
   }
-  52% {
+  50% {
     left: calc(100% - var(--pac));
     transform: scaleX(-1);
   }
-  94% {
+  96.1538% {
     left: 0;
     transform: scaleX(-1);
   }
-  98%,
   100% {
     left: 0;
     transform: scaleX(1);
   }
 }
 
-/* clip 的左边缘始终贴着吃豆人：去程豆子在它前面消失，回程在它身后长回来 */
 @keyframes quotaBeans {
-  0%,
-  4% {
-    clip-path: inset(0 0 0 0);
+  0% {
+    clip-path: inset(0 0 0 calc(var(--bean) / 2));
   }
-  46%,
-  52% {
-    clip-path: inset(0 0 0 100%);
+  46.1538%,
+  50% {
+    clip-path: inset(0 0 0 calc(100% - var(--bean) / 2));
   }
-  94%,
+  96.1538%,
   100% {
-    clip-path: inset(0 0 0 0);
+    clip-path: inset(0 0 0 calc(var(--bean) / 2));
   }
 }
 

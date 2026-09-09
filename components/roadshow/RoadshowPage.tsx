@@ -3,6 +3,11 @@ import { withBase } from '@rspress/core/runtime';
 
 const MODELS = ['GPT', 'Claude', 'DeepSeek', 'GLM', 'Kimi'];
 
+// 额度条上的豆子数量。豆子是一颗颗画出来的而不是重复背景，
+// 单程 24 口正好跨过 24 个豆位（首尾各一颗，故 25 颗），
+// 这样「走一步」和「嚼一口」是同一个节拍（见 roadshow.scss）。
+const QUOTA_BEANS = 25;
+
 export default function RoadshowPage() {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [viewMode, setViewMode] = useState<'interactive' | 'poster'>('interactive');
@@ -134,7 +139,11 @@ export default function RoadshowPage() {
               {/* 额度条：吃豆人来回把豆子吃光，回程又一颗颗长回来 */}
               <div className="rs-quota">
                 <div className="rs-quota__track" aria-hidden="true">
-                  <span className="rs-quota__dots" />
+                  <span className="rs-quota__beans">
+                    {Array.from({ length: QUOTA_BEANS }, (_, i) => (
+                      <i key={i} className="rs-quota__bean" />
+                    ))}
+                  </span>
                   <span className="rs-quota__pac">
                     <span className="rs-quota__jaw rs-quota__jaw--top" />
                     <span className="rs-quota__jaw rs-quota__jaw--bottom" />
