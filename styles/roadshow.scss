@@ -247,6 +247,152 @@
   color: var(--ink-2);
 }
 
+/* ---------------- 额度条：吃豆人 ---------------- */
+
+/*
+ * 一条由「豆子」组成的额度条，吃豆人从左往右一路吃光，
+ * 到头掉个方向往回走，豆子在它身后又一颗颗长回来 —— 呼应「敞开了吃」。
+ * 全部是纯 CSS，仍旧只有黑白两色，尺寸也只占标语底下窄窄一条，不抢主视觉。
+ */
+
+.rs-quota {
+  --pac: clamp(17px, 1.45vw, 23px); // 吃豆人直径
+  --bean: clamp(14px, 1.15vw, 19px); // 豆子间距
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(8px, 1.1vh, 12px);
+  width: 100%;
+  margin-top: clamp(18px, 2.4vh, 28px);
+}
+
+.rs-quota__track {
+  position: relative;
+  width: 100%;
+  height: var(--pac);
+}
+
+/* 豆子：一排等距圆点，靠 clip-path 的左边缘跟着吃豆人走来实现「被吃掉」 */
+.rs-quota__dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at center, var(--ink-2) 1.8px, transparent 2.2px);
+  background-size: var(--bean) 100%;
+  background-repeat: repeat-x;
+  // 末端淡出，免得最后一颗豆子被容器边缘切成半个
+  mask-image: linear-gradient(90deg, #000 94%, transparent);
+  animation: quotaBeans 9s linear infinite;
+}
+
+.rs-quota__pac {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--pac);
+  height: var(--pac);
+  animation: quotaRun 9s linear infinite;
+}
+
+/* 上下两片半圆开合，就是最经典的那张嘴 */
+.rs-quota__jaw {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: var(--ink);
+  animation: quotaChompTop 0.34s ease-in-out infinite alternate;
+
+  // 静态角度：关掉动画（prefers-reduced-motion）时仍是一张张着的嘴，而不是个圆饼
+  &--top {
+    top: 0;
+    border-radius: var(--pac) var(--pac) 0 0;
+    transform-origin: 50% 100%;
+    transform: rotate(20deg);
+  }
+
+  &--bottom {
+    bottom: 0;
+    border-radius: 0 0 var(--pac) var(--pac);
+    transform-origin: 50% 0;
+    transform: rotate(-20deg);
+    animation-name: quotaChompBottom;
+  }
+}
+
+.rs-quota__note {
+  margin: 0;
+  font-size: clamp(13px, 1vw, 15px);
+  letter-spacing: 0.02em;
+  color: var(--ink-2);
+
+  strong {
+    margin-right: 0.35em;
+    font-weight: 700;
+    color: var(--ink);
+  }
+}
+
+@keyframes quotaChompTop {
+  from {
+    transform: rotate(2deg);
+  }
+  to {
+    transform: rotate(34deg);
+  }
+}
+
+@keyframes quotaChompBottom {
+  from {
+    transform: rotate(-2deg);
+  }
+  to {
+    transform: rotate(-34deg);
+  }
+}
+
+/* 去程吃光、原地掉头（scaleX 过零点顺带做出转身的挤压感）、回程走回起点 */
+@keyframes quotaRun {
+  0%,
+  4% {
+    left: 0;
+    transform: scaleX(1);
+  }
+  46% {
+    left: calc(100% - var(--pac));
+    transform: scaleX(1);
+  }
+  52% {
+    left: calc(100% - var(--pac));
+    transform: scaleX(-1);
+  }
+  94% {
+    left: 0;
+    transform: scaleX(-1);
+  }
+  98%,
+  100% {
+    left: 0;
+    transform: scaleX(1);
+  }
+}
+
+/* clip 的左边缘始终贴着吃豆人：去程豆子在它前面消失，回程在它身后长回来 */
+@keyframes quotaBeans {
+  0%,
+  4% {
+    clip-path: inset(0 0 0 0);
+  }
+  46%,
+  52% {
+    clip-path: inset(0 0 0 100%);
+  }
+  94%,
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
 /* ---------------- 二维码 ---------------- */
 
 .rs-qr {
@@ -385,6 +531,12 @@
 
   .rs-hero__models {
     justify-content: center;
+  }
+
+  .rs-quota {
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 

@@ -130,6 +130,20 @@ export default function RoadshowPage() {
                 ))}
                 <span className="rs-hero__models-tail">等模型任意使用</span>
               </p>
+
+              {/* 额度条：吃豆人来回把豆子吃光，回程又一颗颗长回来 */}
+              <div className="rs-quota">
+                <div className="rs-quota__track" aria-hidden="true">
+                  <span className="rs-quota__dots" />
+                  <span className="rs-quota__pac">
+                    <span className="rs-quota__jaw rs-quota__jaw--top" />
+                    <span className="rs-quota__jaw rs-quota__jaw--bottom" />
+                  </span>
+                </div>
+                <p className="rs-quota__note">
+                  <strong>$36 额度</strong>敞开了吃 · 吃完再说
+                </p>
+              </div>
             </section>
 
             {/* 二维码展示区：纯白底、静态、超高对比度 */}
