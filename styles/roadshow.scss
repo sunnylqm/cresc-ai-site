@@ -335,14 +335,14 @@
     top: 0;
     border-radius: var(--pac) var(--pac) 0 0;
     transform-origin: 50% 100%;
-    transform: rotate(20deg);
+    transform: rotate(-20deg);
   }
 
   &--bottom {
     bottom: 0;
     border-radius: 0 0 var(--pac) var(--pac);
     transform-origin: 50% 0;
-    transform: rotate(-20deg);
+    transform: rotate(20deg);
     animation-name: quotaChompBottom;
   }
 }
@@ -360,13 +360,17 @@
   }
 }
 
-/* 从合到开：合上的那一刻正好咬到一颗豆子，且严丝合缝没有缝隙 */
+/*
+ * 从合到开：合上的那一刻正好咬到一颗豆子，且严丝合缝没有缝隙。
+ * 上颚逆时针、下颚顺时针，缺口开在右侧 —— 也就是未翻转时的前进方向；
+ * 回程靠父层 scaleX(-1) 整个镜像过去，嘴自然朝左。反过来写就会背对着豆子。
+ */
 @keyframes quotaChompTop {
   from {
     transform: rotate(0deg);
   }
   to {
-    transform: rotate(35deg);
+    transform: rotate(-35deg);
   }
 }
 
@@ -375,7 +379,7 @@
     transform: rotate(0deg);
   }
   to {
-    transform: rotate(-35deg);
+    transform: rotate(35deg);
   }
 }
 
