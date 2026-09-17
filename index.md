@@ -15,7 +15,7 @@
 提供 GPT、Claude、Kimi、DeepSeek、GLM 等模型的
 Token 大幅折扣与技术支持服务
 
-[直接看模型报价已经知道要什么 · 打开模型广场](https://ai.reactnative.cn/model-plaza)
+[直接看模型报价已经知道要什么 · 打开模型广场](https://36k.ai/model-plaza?embedded=1)
 
 我有挺多不明白的，想从头问个明白扫码加微信 · 随时聊，随便问
 
