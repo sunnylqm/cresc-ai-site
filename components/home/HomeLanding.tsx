@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { withBase } from '@rspress/core/runtime';
 
-const PRICING_URL = 'https://ai.reactnative.cn/model-plaza';
+const PRICING_URL = 'https://36k.ai/model-plaza?embedded=1';
 
 /**
  * 首页背景的「问题墙」：取自名片背面，字号/字重/深浅拉开层次，
